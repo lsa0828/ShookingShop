@@ -1,9 +1,9 @@
-import ProductCard from './ProductCard';
+import ProductList from './ProduckList';
 
 function App() {
   return (
     <div>
-      <ProductCard />
+      <ProductList />
     </div>
   );
 }
