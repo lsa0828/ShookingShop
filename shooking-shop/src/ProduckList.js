@@ -6,7 +6,7 @@ function ProductList() {
     cards.push(<ProductCard key={i} />);
   }
   return (
-    <div className="w-full flex justify-center p-4">
+    <div className="w-full flex justify-center p-6">
       <div className="grid grid-cols-2 gap-4">
         {cards}
       </div>
