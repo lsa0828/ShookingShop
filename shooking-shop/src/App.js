@@ -6,10 +6,8 @@ function App() {
   return (
     <div>
       <Header />
-      <div className="flex flex-col items-center">
-        <Title />
-        <ProductList />
-      </div>
+      <Title />
+      <ProductList />
     </div>
   );
 }
