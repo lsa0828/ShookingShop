@@ -1,4 +1,4 @@
-import Header from './Headr';
+import Header from './Header';
 import ProductList from './ProduckList';
 import Title from './Title';
 
