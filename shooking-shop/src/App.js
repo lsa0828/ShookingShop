@@ -1,9 +1,13 @@
-import ProductCard from './ProductCard';
+import Header from './Header';
+import ProductList from './ProduckList';
+import Title from './Title';
 
 function App() {
   return (
     <div>
-      <ProductCard />
+      <Header />
+      <Title />
+      <ProductList />
     </div>
   );
 }
