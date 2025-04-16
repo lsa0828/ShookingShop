@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ShookingShop/static/css/main.7cc89d25.css",
+    "main.js": "/ShookingShop/static/js/main.f16fc93a.js",
+    "static/js/453.7bb4a82d.chunk.js": "/ShookingShop/static/js/453.7bb4a82d.chunk.js",
+    "index.html": "/ShookingShop/index.html",
+    "main.7cc89d25.css.map": "/ShookingShop/static/css/main.7cc89d25.css.map",
+    "main.f16fc93a.js.map": "/ShookingShop/static/js/main.f16fc93a.js.map",
+    "453.7bb4a82d.chunk.js.map": "/ShookingShop/static/js/453.7bb4a82d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7cc89d25.css",
+    "static/js/main.f16fc93a.js"
+  ]
+}
