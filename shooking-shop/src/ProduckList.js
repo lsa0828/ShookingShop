@@ -1,17 +1,10 @@
 import ProductCard from "./ProductCard";
 
-function ProductList() {
+function ProductList(props) {
   const cards = [];
-  const cardContents = [
-    {image: "temp_shoes.jpeg", brand: "브랜드A", description: "편안하고 착용감이 좋은 신발", price: "35,000원"},
-    {image: "temp_shoes.jpeg", brand: "브랜드B", description: "편안하고 착용감이 좋은 신발", price: "35,000원"},
-    {image: "temp_shoes.jpeg", brand: "브랜드C", description: "편안하고 착용감이 좋은 신발", price: "35,000원"},
-    {image: "temp_shoes.jpeg", brand: "브랜드D", description: "편안하고 착용감이 좋은 신발", price: "35,000원"},
-    {image: "temp_shoes.jpeg", brand: "브랜드E", description: "편안하고 착용감이 좋은 신발", price: "35,000원"},
-    {image: "temp_shoes.jpeg", brand: "브랜드F", description: "편안하고 착용감이 좋은 신발", price: "35,000원"},
-  ]
+  const cardContents = props.cardContents;
   for(let i=0; i<cardContents.length; i++) {
-    cards.push(<ProductCard key={i} content={cardContents[i]} />);
+    cards.push(<ProductCard key={i} content={cardContents[i]} addInCart={props.addInCart} />);
   }
   return (
     <div className="flex justify-center p-6 480:py-6 480:px-2">
