@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function ProductCard(props) {
   const content = props.content;
-  const [inCart, setInCart] = useState(false);
+  const [inCart, setInCart] = useState(content.inCart);
   const handleCartClick = () => {
     setInCart(!inCart);
     props.addInCart(!inCart);
