@@ -1,4 +1,5 @@
 import CardExpirationDateInput from "./input/CardExpirationDateInput";
+import CardholderInput from "./input/CardholderInput";
 import CardNumberInput from "./input/CardNumberInput";
 
 function RegisterCard() {
@@ -6,6 +7,7 @@ function RegisterCard() {
     <div>
       <CardNumberInput />
       <CardExpirationDateInput />
+      <CardholderInput />
     </div>
   );
 }
