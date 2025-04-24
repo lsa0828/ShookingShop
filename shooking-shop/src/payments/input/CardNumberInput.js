@@ -7,7 +7,7 @@ function CardNumberInput(props) {
   const MaskNumber = (digits) => {
     const maskedDigits = digits
       .split('')
-      .map((d, i) => (i < 8 ? d : '*'))
+      .map((d, i) => (i < 8 ? d : '●'))
       .join('');
     return maskedDigits.replace(/(.{4})/g, '$1-').replace(/-$/, '');
   }
@@ -43,7 +43,7 @@ function CardNumberInput(props) {
   return (
     <div>
       <p className="text-gray-700">카드 번호</p>
-      <input className="p-3 text-center font-bold bg-gray-200 rounded-md focus:outline-none"
+      <input className="p-3 text-center font-bold bg-gray-200 rounded-lg focus:outline-none"
         type="text" value={displayNumber}
         onChange={handleChange}
         onKeyDown={handleKeyDown} />

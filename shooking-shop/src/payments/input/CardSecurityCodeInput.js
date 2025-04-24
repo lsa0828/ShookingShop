@@ -6,16 +6,15 @@ function CardSecurityCodeInput() {
 
   const handleChange = (e) => {
     const input = e.target.value;
-    console.log(input);
     if (input.length > securityCode.length) {
       const newDigit = input.slice(-1);
       const newSecurityCode = securityCode + newDigit;
       setSecurityCode(newSecurityCode.slice(0, 3));
-      setDisplayCode("*".repeat(newSecurityCode.length));
+      setDisplayCode("●".repeat(newSecurityCode.length));
     } else if (input.length < securityCode.length) {
       const newSecurityCode = securityCode.slice(0, input.length);
       setSecurityCode(newSecurityCode);
-      setDisplayCode("*".repeat(newSecurityCode.length));
+      setDisplayCode("●".repeat(newSecurityCode.length));
     }
   }
 
@@ -32,7 +31,7 @@ function CardSecurityCodeInput() {
   return (
     <div>
       <p className="text-gray-700">보안 코드(CVC/CVV)</p>
-      <input className="p-3 text-center font-bold bg-gray-200 rounded-md focus:outline-none"
+      <input className="p-3 text-center font-bold bg-gray-200 rounded-lg focus:outline-none"
         type="text" value={displayCode}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

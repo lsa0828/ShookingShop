@@ -36,7 +36,7 @@ function CardExpirationDateInput(props) {
   return (
     <div>
       <p className="text-gray-700">만료일</p>
-      <input className="p-3 text-center font-bold bg-gray-200 rounded-md focus:outline-none"
+      <input className="p-3 text-center font-bold bg-gray-200 rounded-lg focus:outline-none"
         type="text" value={displayDate}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

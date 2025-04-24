@@ -10,7 +10,7 @@ function CardholderInput() {
   return (
     <div>
       <p className="text-gray-700">카드 소유자 이름</p>
-      <input className="p-3 font-bold bg-gray-200 rounded-md focus:outline-none"
+      <input className="p-3 font-bold bg-gray-200 rounded-lg focus:outline-none"
         type="text" value={cardholder}
         onChange={handleChange}
         maxLength={30}
