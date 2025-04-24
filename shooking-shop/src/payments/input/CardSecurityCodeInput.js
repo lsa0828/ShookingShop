@@ -29,14 +29,13 @@ function CardSecurityCodeInput({securityCode, setSecurityCode}) {
   }
 
   return (
-    <div>
+    <div className="m-4">
       <p className="text-gray-700">보안 코드(CVC/CVV)</p>
-      <input className="p-3 text-center font-bold bg-gray-200 rounded-lg focus:outline-none"
+      <input className="w-28 130:w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
         type="text" value={displayCode}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         maxLength={3} />
-      <p>{securityCode}</p>
     </div>
   );
 }

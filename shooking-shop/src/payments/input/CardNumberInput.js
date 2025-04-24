@@ -41,9 +41,9 @@ function CardNumberInput({cardNumber, setCardNumber}) {
   }
 
   return (
-    <div>
+    <div className="m-4">
       <p className="text-gray-700">카드 번호</p>
-      <input className="p-3 text-center font-bold bg-gray-200 rounded-lg focus:outline-none"
+      <input className="w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
         type="text" value={displayNumber}
         onChange={handleChange}
         onKeyDown={handleKeyDown} />
