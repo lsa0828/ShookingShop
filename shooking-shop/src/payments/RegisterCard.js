@@ -6,6 +6,7 @@ import CardPasswordInput from "./input/CardPasswordInput";
 import CardSecurityCodeInput from "./input/CardSecurityCodeInput";
 import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
+import RegisterCardHeader from "./RegisterCardHeader";
 
 function RegisterCard() {
   const [cardNumber, setCardNumber] = useState('');
@@ -22,17 +23,20 @@ function RegisterCard() {
     password.length === 2;
 
   return (
-    <div className="flex justify-center">
-      <div className="mx-6 480:mx-2 w-[480px] 480:w-full">
-        <div className="flex justify-center">
-          <CardImage cardNumber={cardNumber} cardholder={cardholder} expirationDate={expirationDate} />
+    <div>
+      <RegisterCardHeader />
+      <div className="flex justify-center">
+        <div className="mx-6 480:mx-2 w-[480px] 480:w-full">
+          <div className="flex justify-center">
+            <CardImage cardNumber={cardNumber} cardholder={cardholder} expirationDate={expirationDate} />
+          </div>
+          <CardNumberInput cardNumber={cardNumber} setCardNumber={setCardNumber} />
+          <CardExpirationDateInput expirationDate={expirationDate} setExpirationDate={setExpirationDate} />
+          <CardholderInput cardholder={cardholder} setCardholder={setCardholder} />
+          <CardSecurityCodeInput securityCode={securityCode} setSecurityCode={setSecurityCode} />
+          <CardPasswordInput password={password} setPassword={setPassword} />
+          <RegisterCardButton isFormValid={isFormValid} />
         </div>
-        <CardNumberInput cardNumber={cardNumber} setCardNumber={setCardNumber} />
-        <CardExpirationDateInput expirationDate={expirationDate} setExpirationDate={setExpirationDate} />
-        <CardholderInput cardholder={cardholder} setCardholder={setCardholder} />
-        <CardSecurityCodeInput securityCode={securityCode} setSecurityCode={setSecurityCode} />
-        <CardPasswordInput password={password} setPassword={setPassword} />
-        <RegisterCardButton isFormValid={isFormValid} />
       </div>
     </div>
   );

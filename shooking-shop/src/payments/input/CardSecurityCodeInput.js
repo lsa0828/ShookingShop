@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GoQuestion } from "react-icons/go";
 
 function CardSecurityCodeInput({securityCode, setSecurityCode}) {
   //const [securityCode, setSecurityCode] = useState('');
@@ -31,11 +32,14 @@ function CardSecurityCodeInput({securityCode, setSecurityCode}) {
   return (
     <div className="m-4">
       <p className="text-gray-700">보안 코드(CVC/CVV)</p>
-      <input className="w-28 130:w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
-        type="text" value={displayCode}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        maxLength={3} />
+      <div className="flex items-center">
+        <input className="w-28 130:w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
+          type="text" value={displayCode}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          maxLength={3} />
+        <GoQuestion className="mx-3 text-[35px] text-gray-300" />
+      </div>
     </div>
   );
 }
