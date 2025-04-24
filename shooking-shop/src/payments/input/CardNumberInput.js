@@ -40,22 +40,13 @@ function CardNumberInput(props) {
     }
   }
 
-  const handlePaste = (e) => {
-    e.preventDefault();
-    const pasteData = e.clipboardData.getData('text');
-    const digits = pasteData.replace(/\D/g, '').slice(0, 16);
-    setCardNumber(digits);
-    setDisplayNumber(MaskNumber(digits));
-  }
-
   return (
     <div>
       <p className="text-gray-700">카드 번호</p>
       <input className="p-3 text-center font-bold bg-gray-200 rounded-md focus:outline-none"
         type="text" value={displayNumber}
         onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        onPaste={handlePaste} />
+        onKeyDown={handleKeyDown} />
     </div>
   );
 }
