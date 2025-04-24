@@ -1,7 +1,5 @@
-import { useState } from "react";
-
-function CardholderInput() {
-  const [cardholder, setCardholder] = useState('');
+function CardholderInput({cardholder, setCardholder}) {
+  //const [cardholder, setCardholder] = useState('');
 
   const handleChange = (e) => {
     setCardholder(e.target.value);

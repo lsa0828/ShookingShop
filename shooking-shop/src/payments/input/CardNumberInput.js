@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function CardNumberInput(props) {
-  const [cardNumber, setCardNumber] = useState('');
+function CardNumberInput({cardNumber, setCardNumber}) {
+  //const [cardNumber, setCardNumber] = useState('');
   const [displayNumber, setDisplayNumber] = useState('');
 
   const MaskNumber = (digits) => {

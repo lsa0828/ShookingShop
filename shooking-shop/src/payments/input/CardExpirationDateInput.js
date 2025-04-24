@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function CardExpirationDateInput(props) {
-  const [expirationDate, setExpirationDate] = useState('');
+function CardExpirationDateInput({expirationDate, setExpirationDate}) {
+  //const [expirationDate, setExpirationDate] = useState('');
   const [displayDate, setDisplayDate] = useState('');
 
   const handleChange = (e) => {
@@ -24,7 +24,7 @@ function CardExpirationDateInput(props) {
   }
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Backspace' || e.key === 'Tap') {
+    if (e.key === 'Backspace' || e.key === 'Tab') {
       return;
     }
     if (!/^\d$/.test(e.key)) {

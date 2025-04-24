@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
-function CardPasswordInput() {
-  const [password, setPassword] = useState('');
+function CardPasswordInput({password, setPassword}) {
+  //const [password, setPassword] = useState('');
   const [displayPassword, setDisplayPassword] = useState('');
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
@@ -67,7 +67,6 @@ function CardPasswordInput() {
         <p className="p-3 w-12 text-center">●</p>
         <p className="p-3 w-12 text-center">●</p>
       </div>
-      <p>{password}</p>
     </div>
   );
 }

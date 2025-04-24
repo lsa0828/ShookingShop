@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function CardSecurityCodeInput() {
-  const [securityCode, setSecurityCode] = useState('');
+function CardSecurityCodeInput({securityCode, setSecurityCode}) {
+  //const [securityCode, setSecurityCode] = useState('');
   const [displayCode, setDisplayCode] = useState('');
 
   const handleChange = (e) => {
@@ -19,7 +19,7 @@ function CardSecurityCodeInput() {
   }
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Backspace' || e.key === 'Tap') {
+    if (e.key === 'Backspace' || e.key === 'Tab') {
       return;
     }
     if (!/^\d$/.test(e.key)) {
@@ -36,6 +36,7 @@ function CardSecurityCodeInput() {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         maxLength={3} />
+      <p>{securityCode}</p>
     </div>
   );
 }
