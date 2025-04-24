@@ -15,8 +15,8 @@ function CardNumberInput(props) {
   const handleChange = (e) => {
     const input = e.target.value.replace(/-/g, '');
     if (input.length > cardNumber.length) {
-      const newDigits = input.slice(cardNumber.length);
-      const newCardNumber = cardNumber + newDigits;
+      const newDigit = input.slice(-1);
+      const newCardNumber = cardNumber + newDigit;
       setCardNumber(newCardNumber.slice(0, 16));
       setDisplayNumber(MaskNumber(newCardNumber.slice(0, 16)));
     } else if (input.length < cardNumber.length) {
