@@ -6,7 +6,7 @@ function HeaderSample(props) {
   const title = props.title;
   const goLeft = props.goLeft || false;
   return (
-    <div className="flex justify-between h-16 px-8 480:px-4">
+    <div className="flex justify-between h-16 mb-2 px-8 480:px-4">
       <div className="flex justify-center items-center">
         {goLeft ? <button className="text-[35px]"
           onClick={() => navigate(-1)}>
