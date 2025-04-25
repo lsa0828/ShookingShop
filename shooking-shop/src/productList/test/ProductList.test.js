@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import ProductList from "./ProduckList"
+import ProductList from "../ProduckList"
 
 test("renders ProductList", () => {
   render(<ProductList />);
