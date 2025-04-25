@@ -1,4 +1,4 @@
-import HeaderSample from "../HeaderSample";
+import HeaderSample from "./HeaderSample";
 
 function CardListHeader() {
   return (

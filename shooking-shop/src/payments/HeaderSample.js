@@ -15,7 +15,7 @@ function HeaderSample(props) {
         <p className="ml-5 text-xl">{title}</p>
       </div>
       <button  className="text-[35px]"
-        onClick={() => navigate(-1)}><GoX /></button>
+        onClick={() => navigate('/ShookingShop')}><GoX /></button>
     </div>
   );
 }
