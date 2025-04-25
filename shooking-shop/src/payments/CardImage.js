@@ -1,11 +1,11 @@
-function CardImage({cardNumber, cardholder, expirationDate}) {
-  const maskedCardNumber = cardNumber
+function CardImage({card}) {
+  const maskedCardNumber = card.cardNumber
     .split('')
     .map((d, i) => (i < 8 ? d : '●'))
     .join('')
     .replace(/(.{4})/g, '$1 ')
     .replace(/\s$/, '');
-  const maskedExpirationDate = expirationDate
+  const maskedExpirationDate = card.expirationDate
     .replace(/(.{2})/g, '$1/').replace(/\/$/, '');
   
   return (
@@ -13,7 +13,7 @@ function CardImage({cardNumber, cardholder, expirationDate}) {
       <div className="mb-3 w-14 h-8 bg-[#C8BB70] rounded-lg"></div>
       <p className="flex justify-center mb-1 min-h-[1.75rem]">{maskedCardNumber}</p>
       <div className="flex justify-between px-1">
-        <p>{cardholder || 'NAME'}</p>
+        <p>{card.cardholder || 'NAME'}</p>
         <p>{maskedExpirationDate || 'MM/YY'}</p>
       </div>
     </div>

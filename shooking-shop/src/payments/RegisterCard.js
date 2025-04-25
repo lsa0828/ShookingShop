@@ -7,8 +7,10 @@ import CardSecurityCodeInput from "./input/CardSecurityCodeInput";
 import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
 import RegisterCardHeader from "./RegisterCardHeader";
+import { useNavigate } from "react-router-dom";
 
-function RegisterCard() {
+function RegisterCard({addCard}) {
+  const navigate = useNavigate();
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
   const [cardholder, setCardholder] = useState('');
@@ -22,20 +24,33 @@ function RegisterCard() {
     securityCode.length === 3 &&
     password.length === 2;
 
+  const handleRegister = () => {
+    if (!isFormValid) return;
+    const newCard = {
+      "cardNumber": cardNumber,
+      "expirationDate": expirationDate,
+      "cardholder": cardholder,
+      "securityCode": securityCode,
+      "password": password
+    };
+    addCard(newCard);
+    navigate('/ShookingShop/pay');
+  }
+
   return (
     <div>
       <RegisterCardHeader />
       <div className="flex justify-center">
         <div className="mx-6 480:mx-2 w-[480px] 480:w-full">
           <div className="flex justify-center">
-            <CardImage cardNumber={cardNumber} cardholder={cardholder} expirationDate={expirationDate} />
+            <CardImage card={{cardNumber, expirationDate, cardholder}} />
           </div>
           <CardNumberInput cardNumber={cardNumber} setCardNumber={setCardNumber} />
           <CardExpirationDateInput expirationDate={expirationDate} setExpirationDate={setExpirationDate} />
           <CardholderInput cardholder={cardholder} setCardholder={setCardholder} />
           <CardSecurityCodeInput securityCode={securityCode} setSecurityCode={setSecurityCode} />
           <CardPasswordInput password={password} setPassword={setPassword} />
-          <RegisterCardButton isFormValid={isFormValid} />
+          <RegisterCardButton isFormValid={isFormValid} handleRegister={handleRegister} />
         </div>
       </div>
     </div>

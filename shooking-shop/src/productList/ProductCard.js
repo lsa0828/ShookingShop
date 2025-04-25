@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ShookingContext } from "../App";
 
 function ProductCard(props) {
-  const content = props.content;
+  const productId = props.productId;
+  const { productContents, updateIsCart } = useContext(ShookingContext);
+  const content = productContents.find(item => item.id === productId);
   const [inCart, setInCart] = useState(content.inCart);
   const navigate = useNavigate();
+
   const handleCartClick = () => {
     setInCart(!inCart);
-    props.addInCart(!inCart);
+    updateIsCart(productId);
   }
+
   return (
     <div className="border border-gray-200 rounded-xl w-52 480:w-full h-80">
       <img src={`${process.env.PUBLIC_URL}/${content.image}`} alt="임시 신발 사진"
