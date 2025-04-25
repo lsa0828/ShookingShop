@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ProductCard(props) {
   const content = props.content;
   const [inCart, setInCart] = useState(content.inCart);
+  const navigate = useNavigate();
   const handleCartClick = () => {
     setInCart(!inCart);
     props.addInCart(!inCart);
@@ -16,16 +18,22 @@ function ProductCard(props) {
           <h4 className="text-lg font-semibold">{content.brand}</h4>
           <p className="text-gray-500 text-sm mt-1 line-clamp-1">{content.description}</p>
           <p className="text-lg font-medium mt-2">{content.price}</p>
-          {inCart ? 
-          <button className="mt-2 px-3 480:px-2 py-1 bg-gray-200 text-black text-sm rounded-2xl"
-            onClick={handleCartClick}>
-            담김!
-          </button> :
-          <button className="mt-2 px-3 480:px-2 py-1 bg-black text-white text-sm rounded-2xl"
-            onClick={handleCartClick}>
-            담기
-          </button>
-          }
+          <div className="flex">
+            {inCart ? 
+            <button className="mt-2 px-3 480:px-2 py-1 bg-gray-200 text-black text-sm rounded-2xl"
+              onClick={handleCartClick}>
+              담김!
+            </button> :
+            <button className="mt-2 px-3 480:px-2 py-1 bg-black text-white text-sm rounded-2xl"
+              onClick={handleCartClick}>
+              담기
+            </button>
+            }
+            <button className="mt-2 mx-2 px-3 480:px-2 py-1 bg-yellow-300 text-black text-sm rounded-2xl"
+              onClick={() => navigate('/ShookingShop/pay')}>
+              구매
+            </button>
+          </div>
         </div>
       </div>
     </div>
