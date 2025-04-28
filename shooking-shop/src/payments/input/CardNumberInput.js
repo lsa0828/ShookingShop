@@ -1,11 +1,11 @@
-import { useState } from "react";
+//import { useState } from "react";
 
 function CardNumberInput({cardNumber, setCardNumber}) {
   //const [cardNumber, setCardNumber] = useState('');
-  const [displayNumber, setDisplayNumber] = useState('');
+  //const [displayNumber, setDisplayNumber] = useState('');
 
   const MaskNumber = (digits) => {
-    const maskedDigits = digits
+    const maskedDigits = digits.replace(/\D/g, '').slice(0, 16)
       .split('')
       .map((d, i) => (i < 8 ? d : '●'))
       .join('');
@@ -18,11 +18,11 @@ function CardNumberInput({cardNumber, setCardNumber}) {
       const newDigit = input.slice(-1);
       const newCardNumber = cardNumber + newDigit;
       setCardNumber(newCardNumber.slice(0, 16));
-      setDisplayNumber(MaskNumber(newCardNumber.slice(0, 16)));
+      //setDisplayNumber(MaskNumber(newCardNumber.slice(0, 16)));
     } else if (input.length < cardNumber.length) {
       const newCardNumber = cardNumber.slice(0, input.length);
       setCardNumber(newCardNumber);
-      setDisplayNumber(MaskNumber(newCardNumber));
+      //setDisplayNumber(MaskNumber(newCardNumber));
     }
   }
 
@@ -44,7 +44,7 @@ function CardNumberInput({cardNumber, setCardNumber}) {
     <div className="m-4">
       <p className="text-gray-700">카드 번호</p>
       <input className="w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
-        type="text" value={displayNumber}
+        type="text" value={MaskNumber(cardNumber)}
         onChange={handleChange}
         onKeyDown={handleKeyDown} />
     </div>
