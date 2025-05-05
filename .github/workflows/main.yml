@@ -20,9 +20,11 @@ jobs:
 
       - name: 의존성 설치
         run: npm install
+        working-directory: shooking-shop
 
       - name: gh-pages용 빌드 및 배포
         run: npm run deploy
+        working-directory: shooking-shop
 
       - name: 배포 완료 메시지
         run: echo "React 앱이 GitHub Pages에 성공적으로 배포되었습니다."
