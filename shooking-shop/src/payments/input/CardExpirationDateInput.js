@@ -1,12 +1,25 @@
 //import { useState } from "react";
 
+export const MaskDate = (date) => {
+  if (date.length >= 2) {
+    const mm = date.slice(0, 2);
+    if (Number(mm) < 1 || Number(mm) > 12) return '';
+    return date.slice(0, 4).replace(/(.{2})/g, '$1 / ').replace(/ \/ $/, '');
+  } else if (date.length === 1) {
+    if (['0', '1'].includes(date[0])) {
+      return date.slice(0, 4).replace(/(.{2})/g, '$1 / ').replace(/ \/ $/, '');
+    } else {
+      return '';
+    }
+  } else {
+    return '';
+  }
+  //return date.slice(0, 4).replace(/(.{2})/g, '$1 / ').replace(/ \/ $/, '');
+}
+
 function CardExpirationDateInput({expirationDate, setExpirationDate}) {
   //const [expirationDate, setExpirationDate] = useState('');
   //const [displayDate, setDisplayDate] = useState('');
-
-  const MaskDate = (date) => {
-    return date.slice(0, 4).replace(/(.{2})/g, '$1 / ').replace(/ \/ $/, '');
-  }
 
   const handleChange = (e) => {
     const input = e.target.value.replace(/\//g, '').replace(/\s/g, '').slice(0, 4);
@@ -15,7 +28,7 @@ function CardExpirationDateInput({expirationDate, setExpirationDate}) {
       if (Number(mm) < 1 || Number(mm) > 12) return;
       setExpirationDate(input);
     } else if (input.length === 1) {
-      if (Number(input[0]) in [0, 1]) {
+      if (['0', '1'].includes(input[0])) {
         setExpirationDate(input);
       }
     } else {
