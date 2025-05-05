@@ -25,11 +25,6 @@ jobs:
         run: npm install
         working-directory: shooking-shop
 
-      - name: Git user 설정
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: gh-pages용 빌드 및 배포
         run: npm run deploy
         working-directory: shooking-shop
