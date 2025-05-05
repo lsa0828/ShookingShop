@@ -1,8 +1,25 @@
-import { useState } from "react";
+//import { useState } from "react";
+
+export const MaskDate = (date) => {
+  if (date.length >= 2) {
+    const mm = date.slice(0, 2);
+    if (Number(mm) < 1 || Number(mm) > 12) return '';
+    return date.slice(0, 4).replace(/(.{2})/g, '$1 / ').replace(/ \/ $/, '');
+  } else if (date.length === 1) {
+    if (['0', '1'].includes(date[0])) {
+      return date.slice(0, 4).replace(/(.{2})/g, '$1 / ').replace(/ \/ $/, '');
+    } else {
+      return '';
+    }
+  } else {
+    return '';
+  }
+  //return date.slice(0, 4).replace(/(.{2})/g, '$1 / ').replace(/ \/ $/, '');
+}
 
 function CardExpirationDateInput({expirationDate, setExpirationDate}) {
   //const [expirationDate, setExpirationDate] = useState('');
-  const [displayDate, setDisplayDate] = useState('');
+  //const [displayDate, setDisplayDate] = useState('');
 
   const handleChange = (e) => {
     const input = e.target.value.replace(/\//g, '').replace(/\s/g, '').slice(0, 4);
@@ -10,16 +27,12 @@ function CardExpirationDateInput({expirationDate, setExpirationDate}) {
       const mm = input.slice(0, 2);
       if (Number(mm) < 1 || Number(mm) > 12) return;
       setExpirationDate(input);
-      const newDate = input.replace(/(.{2})/g, '$1 / ').replace(/ \/ $/, '');
-      setDisplayDate(newDate);
     } else if (input.length === 1) {
-      if (Number(input[0]) in [0, 1]) {
+      if (['0', '1'].includes(input[0])) {
         setExpirationDate(input);
-        setDisplayDate(input);
       }
     } else {
       setExpirationDate('');
-      setDisplayDate('');
     }
   }
 
@@ -37,7 +50,7 @@ function CardExpirationDateInput({expirationDate, setExpirationDate}) {
     <div className="m-4">
       <p className="text-gray-700">만료일</p>
       <input className="w-36 160:w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
-        type="text" value={displayDate}
+        type="text" value={MaskDate(expirationDate)}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         placeholder="MM / YY" />

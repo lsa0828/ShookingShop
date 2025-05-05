@@ -5,8 +5,9 @@ function CardholderInput({cardholder, setCardholder}) {
   const [cardholderLength, setCardholderLength] = useState(0);
 
   const handleChange = (e) => {
-    setCardholder(e.target.value);
-    setCardholderLength(e.target.value.length);
+    const newCardholder = e.target.value.slice(0, 30);
+    setCardholder(newCardholder);
+    setCardholderLength(newCardholder.length);
   }
 
   return (
