@@ -27,8 +27,8 @@ jobs:
 
       - name: Git user 설정
         run: |
-          git config --global user.name "lsa0828"
-          git config --global user.email "lsa0828@duksung.ac.kr"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: gh-pages용 빌드 및 배포
         run: npm run deploy
