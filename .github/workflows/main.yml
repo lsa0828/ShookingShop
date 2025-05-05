@@ -33,6 +33,10 @@ jobs:
           git config --global user.name "lsa0828"
           git config --global user.email "lsa0828@duksung.ac.kr"
 
+      - name: 배포용 remote 설정
+        run: git remote set-url origin https://x-access-token:${{ secrets.WORKFLOW_TOKEN }}@github.com/lsa0828/ShookingShop.git
+        working-directory: shooking-shop
+
       - name: gh-pages용 빌드 및 배포
         run: npm run deploy
         working-directory: shooking-shop
