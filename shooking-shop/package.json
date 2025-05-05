@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build -u \"lsa0828 <lsa0828@duksung.ac.kr>\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "predeploy-storybook": "npm run build-storybook",
