@@ -8,7 +8,6 @@ import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
 import RegisterCardHeader from "./RegisterCardHeader";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../mocks/config";
 
 function RegisterCard({addCard}) {
   const navigate = useNavigate();
@@ -35,7 +34,7 @@ function RegisterCard({addCard}) {
       "password": password
     };
     addCard(newCard);
-    await navigate(`${BASE_URL}/pay`);
+    await navigate('/pay');
   }
 
   return (

@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../mocks/config";
 
 function CardPayButton() {
   const navigate = useNavigate();
   const handleCardPay = () => {
-    navigate(`${BASE_URL}/`);
+    navigate('/');
   }
   return (
     <div className="m-4">
