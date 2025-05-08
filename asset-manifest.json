@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ShookingShop/static/css/main.e2c95817.css",
-    "main.js": "/ShookingShop/static/js/main.dab63b71.js",
+    "main.js": "/ShookingShop/static/js/main.6ea9348a.js",
     "static/js/453.7bb4a82d.chunk.js": "/ShookingShop/static/js/453.7bb4a82d.chunk.js",
     "index.html": "/ShookingShop/index.html",
     "main.e2c95817.css.map": "/ShookingShop/static/css/main.e2c95817.css.map",
-    "main.dab63b71.js.map": "/ShookingShop/static/js/main.dab63b71.js.map",
+    "main.6ea9348a.js.map": "/ShookingShop/static/js/main.6ea9348a.js.map",
     "453.7bb4a82d.chunk.js.map": "/ShookingShop/static/js/453.7bb4a82d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e2c95817.css",
-    "static/js/main.dab63b71.js"
+    "static/js/main.6ea9348a.js"
   ]
 }
