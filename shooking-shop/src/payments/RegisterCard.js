@@ -8,7 +8,7 @@ import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
 import RegisterCardHeader from "./RegisterCardHeader";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../mocks/worker";
+import { BASE_URL } from "../mocks/config";
 
 function RegisterCard({addCard}) {
   const navigate = useNavigate();

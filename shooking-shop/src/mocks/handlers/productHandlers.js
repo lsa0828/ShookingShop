@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import { BASE_URL } from "../worker";
+import { BASE_URL } from "../config";
 
 const products = [
   {id: 1, image: "temp_shoes.jpeg", brand: "브랜드A", description: "곰돌이 아기신발 운동화 아동 스니커즈", price: 38000, inCart: false},

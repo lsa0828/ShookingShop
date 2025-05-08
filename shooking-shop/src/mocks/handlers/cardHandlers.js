@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import { BASE_URL } from "../worker";
+import { BASE_URL } from "../config";
 
 const cards = [
   {
