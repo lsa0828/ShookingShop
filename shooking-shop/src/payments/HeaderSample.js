@@ -1,6 +1,5 @@
 import { GoChevronLeft, GoX } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../mocks/config";
 
 function HeaderSample(props) {
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ function HeaderSample(props) {
         <p className="ml-5 text-xl">{title}</p>
       </div>
       <button  className="text-[35px]"
-        onClick={() => navigate(`${BASE_URL}/`)}><GoX /></button>
+        onClick={() => navigate('/')}><GoX /></button>
     </div>
   );
 }

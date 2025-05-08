@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShookingContext } from "../App";
-import { BASE_URL } from "../mocks/config";
 
 function ProductCard(props) {
   const productId = props.productId;
@@ -38,7 +37,7 @@ function ProductCard(props) {
             </button>
             }
             <button className="mt-2 mx-2 px-3 480:px-2 py-1 bg-yellow-300 text-black text-sm rounded-2xl"
-              onClick={() => navigate(`${BASE_URL}/pay`)}>
+              onClick={() => navigate(`/pay`)}>
               구매
             </button>
           </div>
