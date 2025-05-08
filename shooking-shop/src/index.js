@@ -3,13 +3,26 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { worker } from './mocks/worker';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+async function prepare() {
+  await worker.start({
+    serviceWorker: {
+      url: process.env.NODE_ENV === 'production'
+        ? '/ShookingShop/mockServiceWorker.js'
+        : '/mockServiceWorker.js',
+    }
+  });
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+}
+
+prepare();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

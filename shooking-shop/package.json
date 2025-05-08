@@ -16,7 +16,7 @@
     "recoil": "^0.7.7",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://lsa0828.github.io/ShookingShop",
+  "homepage": "https://lsa0828.github.io/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -68,5 +68,11 @@
     "storybook": "^8.6.12",
     "tailwindcss": "^3.4.17",
     "webpack": "^5.99.6"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public",
+      "public\\ShookingShop"
+    ]
   }
 }
