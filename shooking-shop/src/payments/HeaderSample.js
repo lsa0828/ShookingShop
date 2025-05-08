@@ -1,6 +1,6 @@
 import { GoChevronLeft, GoX } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../mocks/worker";
+import { BASE_URL } from "../mocks/config";
 
 function HeaderSample(props) {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShookingContext } from "../App";
-import { BASE_URL } from "../mocks/worker";
+import { BASE_URL } from "../mocks/config";
 
 function ProductCard(props) {
   const productId = props.productId;

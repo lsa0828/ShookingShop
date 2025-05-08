@@ -4,7 +4,7 @@ import RegisterCard from './payments/RegisterCard';
 import CardList from './payments/CardList';
 import { createContext, useEffect, useState } from 'react';
 import CartPage from './cart/CartPage';
-import { BASE_URL } from './mocks/worker';
+import { BASE_URL } from './mocks/config';
 
 export const ShookingContext = createContext();
 
