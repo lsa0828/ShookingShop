@@ -1,4 +1,5 @@
 import { http, HttpResponse } from "msw";
+import { BASE_URL } from "../worker";
 
 const cards = [
   {
@@ -11,10 +12,10 @@ const cards = [
 ];
 
 export const cardHandlers = [
-  http.get('/api/cards', () => {
+  http.get(`${BASE_URL}/api/cards`, () => {
     return HttpResponse.json(cards);
   }),
-  http.post('/api/cards/add', async ({ request }) => {
+  http.post(`${BASE_URL}/api/cards/add`, async ({ request }) => {
     const newCard = await request.json();
     cards.push(newCard);
     return HttpResponse.json(newCard);

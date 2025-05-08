@@ -1,4 +1,5 @@
 import { http, HttpResponse } from "msw";
+import { BASE_URL } from "../worker";
 
 const products = [
   {id: 1, image: "temp_shoes.jpeg", brand: "브랜드A", description: "곰돌이 아기신발 운동화 아동 스니커즈", price: 38000, inCart: false},
@@ -11,10 +12,10 @@ const products = [
 ];
 
 export const productHandlers = [
-  http.get('/api/products', () => {
+  http.get(`${BASE_URL}/api/products`, () => {
     return HttpResponse.json(products);
   }),
-  http.patch('/api/products/cart/:id', ({ params }) => {
+  http.patch(`${BASE_URL}/api/products/cart/:id`, ({ params }) => {
     const { id } = params;
     const product = products.find(p => p.id === Number(id));
     if (product) {
