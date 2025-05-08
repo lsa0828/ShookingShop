@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 function CardPasswordInput({password, setPassword}) {
   //const [password, setPassword] = useState('');

@@ -16,6 +16,9 @@ function App() {
     fetch(`${BASE_URL}/api/products`)
       .then(res => res.json())
       .then(data => setProductContents(data));
+    fetch(`${BASE_URL}/api/cards`)
+      .then(res => res.json())
+      .then(data => setCards(data));
   }, []);
 
   const updateIsCart = async (id) => {
@@ -28,8 +31,14 @@ function App() {
     );
   }
 
-  const addCard = (newCard) => {
-    setCards((prevCards) => [...prevCards, newCard]);
+  const addCard = async (newCard) => {
+    const res = await fetch(`${BASE_URL}/api/cards/add`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newCard)
+    });
+    const savedCard = await res.json();
+    setCards((prevCards) => [...prevCards, savedCard]);
   }
 
   return (

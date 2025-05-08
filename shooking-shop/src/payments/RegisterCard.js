@@ -25,7 +25,7 @@ function RegisterCard({addCard}) {
     securityCode.length === 3 &&
     password.length === 2;
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!isFormValid) return;
     const newCard = {
       "cardNumber": cardNumber,
@@ -35,7 +35,7 @@ function RegisterCard({addCard}) {
       "password": password
     };
     addCard(newCard);
-    navigate(`${BASE_URL}/pay`);
+    await navigate(`${BASE_URL}/pay`);
   }
 
   return (
