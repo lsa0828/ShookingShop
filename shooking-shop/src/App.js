@@ -3,6 +3,7 @@ import ProductListPage from './productList/ProductListPage';
 import RegisterCard from './payments/RegisterCard';
 import CardList from './payments/CardList';
 import { createContext, useState } from 'react';
+import CartPage from './cart/CartPage';
 
 export const ShookingContext = createContext();
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/ShookingShop" element={<ProductListPage />} />
           <Route path="/ShookingShop/pay" element={<CardList cards={cards} />} />
           <Route path="/ShookingShop/register" element={<RegisterCard addCard={addCard} />} />
+          <Route path="/ShookingShop/cart" element={<CartPage />} />
         </Routes>
       </BrowserRouter>
     </ShookingContext.Provider>
