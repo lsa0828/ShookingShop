@@ -1,6 +1,6 @@
 import { IoAdd } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../mocks/worker";
+import { BASE_URL } from "../mocks/config";
 
 function AddCardButton({isNew}) {
   const navigate = useNavigate();

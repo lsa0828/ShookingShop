@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../mocks/worker";
+import { BASE_URL } from "../mocks/config";
 
 function CardPayButton() {
   const navigate = useNavigate();
