@@ -1,16 +1,10 @@
 //import { useState } from "react";
 
+import { MaskNumber } from "./utils/MaskNumber";
+
 function CardNumberInput({cardNumber, setCardNumber}) {
   //const [cardNumber, setCardNumber] = useState('');
   //const [displayNumber, setDisplayNumber] = useState('');
-
-  const MaskNumber = (digits) => {
-    const maskedDigits = digits.replace(/\D/g, '').slice(0, 16)
-      .split('')
-      .map((d, i) => (i < 8 ? d : '●'))
-      .join('');
-    return maskedDigits.replace(/(.{4})/g, '$1-').replace(/-$/, '');
-  }
 
   const handleChange = (e) => {
     const input = e.target.value.replace(/-/g, '');

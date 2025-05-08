@@ -2,41 +2,53 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProductListPage from './productList/ProductListPage';
 import RegisterCard from './payments/RegisterCard';
 import CardList from './payments/CardList';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import CartPage from './cart/CartPage';
+import { BASE_URL } from './mocks/worker';
 
 export const ShookingContext = createContext();
 
 function App() {
-  const [productContents, setProductContents] = useState([
-    {id: 1, image: "temp_shoes.jpeg", brand: "브랜드A", description: "곰돌이 아기신발 운동화 아동 스니커즈", price: "35,000원", inCart: false},
-    {id: 2, image: "temp_shoes2.jpeg", brand: "브랜드B", description: "편안하고 착용감이 좋은 신발", price: "35,000원", inCart: false},
-    {id: 3, image: "temp_shoes3.jpeg", brand: "브랜드C", description: "편리한 건강신발 간호신발 효도화", price: "35,000원", inCart: false},
-    {id: 4, image: "temp_shoes4.jpeg", brand: "브랜드D", description: "알바 구두 단화 찍찍이 발편한 로퍼 근무화", price: "35,000원", inCart: false},
-    {id: 5, image: "temp_shoes5.jpeg", brand: "브랜드E", description: "신상 슈즈 추천템, 올해 추천 신발", price: "35,000원", inCart: false},
-    {id: 6, image: "temp_shoes6.jpeg", brand: "브랜드F", description: "남성 신발", price: "35,000원", inCart: false},
-    {id: 7, image: "temp_shoes7.jpeg", brand: "브랜드F", description: "여성 컴포트화", price: "35,000원", inCart: false},
-  ]);
+  const [productContents, setProductContents] = useState([]);
   const [cards, setCards] = useState([]);
 
-  const updateIsCart = (id) => {
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/products`)
+      .then(res => res.json())
+      .then(data => setProductContents(data));
+    fetch(`${BASE_URL}/api/cards`)
+      .then(res => res.json())
+      .then(data => setCards(data));
+  }, []);
+
+  const updateIsCart = async (id) => {
+    const res = await fetch(`${BASE_URL}/api/products/cart/${id}`, {method: 'PATCH'});
+    const updatedProduct = await res.json();
     setProductContents((prevContents) =>
       prevContents.map((item) =>
-        item.id === id ? {...item, inCart: !item.inCart} : item
+        item.id === id ? updatedProduct : item
       )
     );
   }
 
-  const addCard = (newCard) => {
-    setCards((prevCards) => [...prevCards, newCard]);
+  const addCard = async (newCard) => {
+    const res = await fetch(`${BASE_URL}/api/cards/add`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newCard)
+    });
+    const savedCard = await res.json();
+    setCards((prevCards) => [...prevCards, savedCard]);
   }
 
   return (
     <ShookingContext.Provider value={{productContents, updateIsCart}}>
-      <BrowserRouter>
+      <BrowserRouter basename={BASE_URL}>
         <Routes>
-          <Route path="/ShookingShop" element={<ProductListPage />} />
-          <Route path="/ShookingShop/pay" element={<CardList cards={cards} />} />
-          <Route path="/ShookingShop/register" element={<RegisterCard addCard={addCard} />} />
+          <Route path="/" element={<ProductListPage />} />
+          <Route path="/pay" element={<CardList cards={cards} />} />
+          <Route path="/register" element={<RegisterCard addCard={addCard} />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </BrowserRouter>
     </ShookingContext.Provider>
@@ -44,3 +56,4 @@ function App() {
 }
 
 export default App;
+// basename="/ShookingShop"
