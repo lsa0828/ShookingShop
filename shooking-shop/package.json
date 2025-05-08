@@ -16,7 +16,7 @@
     "recoil": "^0.7.7",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://lsa0828.github.io/",
+  "homepage": "https://lsa0828.github.io/ShookingShop",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
