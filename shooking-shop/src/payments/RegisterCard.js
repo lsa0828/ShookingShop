@@ -8,6 +8,7 @@ import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
 import RegisterCardHeader from "./RegisterCardHeader";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../mocks/worker";
 
 function RegisterCard({addCard}) {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function RegisterCard({addCard}) {
     securityCode.length === 3 &&
     password.length === 2;
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!isFormValid) return;
     const newCard = {
       "cardNumber": cardNumber,
@@ -34,7 +35,7 @@ function RegisterCard({addCard}) {
       "password": password
     };
     addCard(newCard);
-    navigate('/ShookingShop/pay');
+    await navigate(`${BASE_URL}/pay`);
   }
 
   return (
