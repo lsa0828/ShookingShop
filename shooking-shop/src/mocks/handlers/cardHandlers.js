@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 import { BASE_URL } from "../config";
-
+/*
 const cards = [
   {
     "cardNumber": "1234567890123456",
@@ -9,7 +9,9 @@ const cards = [
     "securityCode": "123",
     "password": "12"
   }
-];
+];*/
+
+const cards = [];
 
 export const cardHandlers = [
   http.get(`${BASE_URL}/api/cards`, () => {

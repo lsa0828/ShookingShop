@@ -1,8 +1,9 @@
 import CartHeader from "./CartHeader";
 import CartTitle from "./CartTitle";
-import { atom, RecoilRoot } from "recoil";
+import { atom } from "recoil";
 import InCartList from "./InCartList";
 import TotalPrice from "./TotalPrice";
+import PayInCartButton from "./PayInCartButton";
 
 export const productsInCart = atom({
   key: 'productsInCart',
@@ -11,12 +12,13 @@ export const productsInCart = atom({
 
 function CartPage() {
   return (
-    <RecoilRoot>
+    <div>
       <CartHeader />
       <CartTitle />
       <InCartList />
       <TotalPrice />
-    </RecoilRoot>
+      <PayInCartButton />
+    </div>
   );
 }
 

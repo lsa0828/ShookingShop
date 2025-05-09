@@ -23,7 +23,7 @@ function InCartList() {
   };
 
   return (
-    <div className="p-6 480:py-6 480:px-4">
+    <div className="pt-6 px-6 480:px-4">
       {products.map((product, index) => (
         <div key={index}>
           <div className="flex justify-center">
