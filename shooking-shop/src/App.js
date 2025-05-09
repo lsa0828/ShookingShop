@@ -1,16 +1,22 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProductListPage from './productList/ProductListPage';
-import RegisterCard from './payments/RegisterCard';
-import CardList from './payments/CardList';
 import { createContext, useEffect, useState } from 'react';
 import CartPage from './cart/CartPage';
 import { BASE_URL } from './mocks/config';
+import { atom, useSetRecoilState } from 'recoil';
+import PaymentsPage from './payments/PaymentsPage';
+import RegisterCardPage from './payments/RegisterCardPage';
 
 export const ShookingContext = createContext();
 
+export const cardState = atom({
+  key: 'cardState',
+  default: []
+});
+
 function App() {
   const [productContents, setProductContents] = useState([]);
-  const [cards, setCards] = useState([]);
+  const setCards = useSetRecoilState(cardState);
 
   useEffect(() => {
     fetch(`${BASE_URL}/api/products`)
@@ -31,23 +37,13 @@ function App() {
     );
   }
 
-  const addCard = async (newCard) => {
-    const res = await fetch(`${BASE_URL}/api/cards/add`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(newCard)
-    });
-    const savedCard = await res.json();
-    setCards((prevCards) => [...prevCards, savedCard]);
-  }
-
   return (
     <ShookingContext.Provider value={{productContents, updateIsCart}}>
       <BrowserRouter basename={BASE_URL}>
         <Routes>
-          <Route path="/" element={<ProductListPage />} />
-          <Route path="/pay" element={<CardList cards={cards} />} />
-          <Route path="/register" element={<RegisterCard addCard={addCard} />} />
+          <Route path="" element={<ProductListPage />} />
+          <Route path="/pay" element={<PaymentsPage />} />
+          <Route path="/register" element={<RegisterCardPage />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
       </BrowserRouter>
@@ -56,4 +52,3 @@ function App() {
 }
 
 export default App;
-// basename="/ShookingShop"
