@@ -1,6 +1,10 @@
+import CartHeader from "./CartHeader";
+
 function CartPage() {
   return (
-    <div></div>
+    <div>
+      <CartHeader />
+    </div>
   );
 }
 

@@ -45,7 +45,7 @@ function App() {
     <ShookingContext.Provider value={{productContents, updateIsCart}}>
       <BrowserRouter basename={BASE_URL}>
         <Routes>
-          <Route path="/" element={<ProductListPage />} />
+          <Route path="" element={<ProductListPage />} />
           <Route path="/pay" element={<CardList cards={cards} />} />
           <Route path="/register" element={<RegisterCard addCard={addCard} />} />
           <Route path="/cart" element={<CartPage />} />
@@ -56,4 +56,3 @@ function App() {
 }
 
 export default App;
-// basename="/ShookingShop"
