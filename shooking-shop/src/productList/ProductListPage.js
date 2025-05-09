@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import Title from './Title';
 import ProductList from './ProduckList';
 import { ShookingContext } from '../App';
 import ProductListHeader from './ProductListHeader';
+import ProductListTitle from './ProductListTitle';
 
 function ProductListPage() {
   const { productContents } = useContext(ShookingContext);
@@ -10,7 +10,7 @@ function ProductListPage() {
   return (
     <div>
       <ProductListHeader cartNum={cartNum} />
-      <Title num={productContents.length} />
+      <ProductListTitle num={productContents.length} />
       <ProductList />
     </div>
   );
