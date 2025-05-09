@@ -2,6 +2,7 @@ import CartHeader from "./CartHeader";
 import CartTitle from "./CartTitle";
 import { atom, RecoilRoot } from "recoil";
 import InCartList from "./InCartList";
+import TotalPrice from "./TotalPrice";
 
 export const productsInCart = atom({
   key: 'productsInCart',
@@ -14,6 +15,7 @@ function CartPage() {
       <CartHeader />
       <CartTitle />
       <InCartList />
+      <TotalPrice />
     </RecoilRoot>
   );
 }
