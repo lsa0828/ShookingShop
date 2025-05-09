@@ -25,7 +25,7 @@ function App() {
     fetch(`${BASE_URL}/api/cards`)
       .then(res => res.json())
       .then(data => setCards(data));
-  }, []);
+  }, [setCards]);
 
   const updateIsCart = async (id) => {
     const res = await fetch(`${BASE_URL}/api/products/cart/${id}`, {method: 'PATCH'});
