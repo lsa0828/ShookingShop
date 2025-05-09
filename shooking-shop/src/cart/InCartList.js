@@ -11,7 +11,7 @@ function InCartList() {
     fetch(`${BASE_URL}/api/products/incart`)
       .then(res => res.json())
       .then(data => setProducts(data));
-  }, []);
+  }, [setProducts]);
 
   const numHandler = (id, newNum) => {
     setProducts(prev =>
