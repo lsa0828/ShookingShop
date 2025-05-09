@@ -1,16 +1,16 @@
 import { useContext } from 'react';
-import Header from './Header';
-import Title from './Title';
 import ProductList from './ProduckList';
 import { ShookingContext } from '../App';
+import ProductListHeader from './ProductListHeader';
+import ProductListTitle from './ProductListTitle';
 
 function ProductListPage() {
   const { productContents } = useContext(ShookingContext);
   const cartNum = productContents.filter(product => product.inCart).length;
   return (
     <div>
-      <Header cartNum={cartNum} />
-      <Title num={productContents.length} />
+      <ProductListHeader cartNum={cartNum} />
+      <ProductListTitle num={productContents.length} />
       <ProductList />
     </div>
   );
