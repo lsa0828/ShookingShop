@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShookingContext } from "../App";
+import { formatPrice } from "../utils/format";
 
 function ProductCard(props) {
   const productId = props.productId;
@@ -8,8 +9,6 @@ function ProductCard(props) {
   const content = productContents.find(item => item.id === productId);
   const [inCart, setInCart] = useState(content.inCart);
   const navigate = useNavigate();
-
-  const formatPrice = content.price.toLocaleString('ko-KR') + '원';
 
   const handleCartClick = () => {
     setInCart(!inCart);
@@ -24,7 +23,7 @@ function ProductCard(props) {
         <div>
           <h4 className="text-lg font-semibold">{content.brand}</h4>
           <p className="text-gray-500 text-sm mt-1 line-clamp-1">{content.description}</p>
-          <p className="text-lg font-medium mt-2">{formatPrice}</p>
+          <p className="text-lg font-medium mt-2">{formatPrice(content.price)}</p>
           <div className="flex">
             {inCart ? 
             <button className="mt-2 px-3 480:px-2 py-1 bg-gray-200 text-black text-sm rounded-2xl"

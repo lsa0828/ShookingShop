@@ -1,4 +1,4 @@
-export const MaskNumber = (digits) => {
+export const maskNumber = (digits) => {
   const maskedDigits = digits.replace(/\D/g, '').slice(0, 16)
     .split('')
     .map((d, i) => (i < 8 ? d : '●'))
