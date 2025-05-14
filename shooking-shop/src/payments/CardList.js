@@ -10,8 +10,8 @@ function CardList({addClick}) {
   return (
     <div className="flex justify-center">
       <div>
-        {cards.map((card, index) => (
-          <div key={index} className="mb-12">
+        {cards.map((card) => (
+          <div key={card.id} className="mb-12">
             <CardImage card={card} />
             <CardPayButton />
           </div>

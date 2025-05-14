@@ -1,33 +1,15 @@
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import ProductInCart from "./ProductInCart";
-import { useEffect } from "react";
-import { BASE_URL } from "../mocks/config";
-import { productsInCartAtom } from "../recoil/atoms/productsInCartAtom";
+import { productInCartIdsAtom } from "../recoil/atoms/productInCartIdsAtom";
 
 function InCartList() {
-  const [productsInCart, setProductsInCart] = useRecoilState(productsInCartAtom);
-  
-  useEffect(() => {
-    fetch(`${BASE_URL}/api/products/incart`)
-      .then(res => res.json())
-      .then(data => setProductsInCart(data));
-  }, [setProductsInCart]);
-
-  const numHandler = (id, newNum) => {
-    setProductsInCart(prev =>
-      prev.map(p =>
-        p.id === id ? {...p, num: newNum} : p
-      )
-    );
-    fetch(`${BASE_URL}/api/products/incart/${id}&${newNum}`, {method: 'PATCH'});
-  };
-
+  const productInCartIds = useRecoilValue(productInCartIdsAtom);
   return (
     <div className="pt-6 px-6 480:px-4">
-      {productsInCart.map((product, index) => (
-        <div key={index}>
+      {productInCartIds.map((id) => (
+        <div key={id}>
           <div className="flex justify-center">
-            <ProductInCart product={product} numHandler={numHandler} />
+            <ProductInCart id={id} />
           </div>
           <hr className="border-gray-300 my-4 mx-1 sm:mx-6 md:mx-32 lg:mx-56 xl:mx-80" />
         </div>

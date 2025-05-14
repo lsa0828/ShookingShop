@@ -8,9 +8,11 @@ import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
 import { BASE_URL } from "../mocks/config";
 import { useSetRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 import { cardsAtom } from "../recoil/atoms/cardsAtom";
 
-function RegisterCardInput({ registerClick }) {
+function RegisterCardInput() {
+  const navigate = useNavigate();
   const setCards = useSetRecoilState(cardsAtom);
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
@@ -32,7 +34,7 @@ function RegisterCardInput({ registerClick }) {
       body: JSON.stringify(newCard)
     });
     const savedCard = await res.json();
-    setCards((prevCards) => [...prevCards, savedCard]);
+    setCards((prev) => [...prev, savedCard]);
   };
 
   const handleRegister = async () => {
@@ -45,7 +47,7 @@ function RegisterCardInput({ registerClick }) {
       "password": password
     };
     addCard(newCard);
-    await registerClick();
+    await navigate('/pay');
   }
 
   return (

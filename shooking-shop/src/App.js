@@ -3,24 +3,34 @@ import ProductListPage from './productList/ProductListPage';
 import { useEffect } from 'react';
 import CartPage from './cart/CartPage';
 import { BASE_URL } from './mocks/config';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilCallback, useSetRecoilState } from 'recoil';
 import PaymentsPage from './payments/PaymentsPage';
 import RegisterCardPage from './payments/RegisterCardPage';
-import { productsAtom } from './recoil/atoms/productsAtom';
+import { productAtomFamily } from './recoil/atoms/productAtomFamily';
+import { productIdsAtom } from './recoil/atoms/productIdsAtom';
 import { cardsAtom } from './recoil/atoms/cardsAtom';
 
 function App() {
-  const setProducts = useSetRecoilState(productsAtom);
+  const setProductIds = useSetRecoilState(productIdsAtom);
   const setCards = useSetRecoilState(cardsAtom);
 
-  useEffect(() => {
+  const setProductAtoms = useRecoilCallback(({set}) => () => {
     fetch(`${BASE_URL}/api/products`)
       .then(res => res.json())
-      .then(data => setProducts(data));
+      .then(data => {
+        setProductIds(data.map(p => p.id));
+        data.forEach((product) => {
+          set(productAtomFamily(product.id), product)
+        });
+      });
+  });
+
+  useEffect(() => {
+    setProductAtoms();
     fetch(`${BASE_URL}/api/cards`)
       .then(res => res.json())
       .then(data => setCards(data));
-  }, [setProducts, setCards]);
+  });
 
   return (
     <BrowserRouter basename={BASE_URL}>
