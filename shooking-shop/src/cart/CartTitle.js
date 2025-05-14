@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Title from "../Title";
 import { ShookingContext } from "../App";
 
-function CartTitle(props) {
+function CartTitle() {
   const { productContents } = useContext(ShookingContext);
   const cartNum = productContents.filter(product => product.inCart).length;
   const title = "장바구니";

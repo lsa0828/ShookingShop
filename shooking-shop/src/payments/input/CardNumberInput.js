@@ -1,6 +1,6 @@
 //import { useState } from "react";
 
-import { MaskNumber } from "./utils/MaskNumber";
+import { maskNumber } from "./utils/maskNumber";
 
 function CardNumberInput({cardNumber, setCardNumber}) {
   //const [cardNumber, setCardNumber] = useState('');
@@ -38,7 +38,7 @@ function CardNumberInput({cardNumber, setCardNumber}) {
     <div className="m-4">
       <p className="text-gray-700">카드 번호</p>
       <input className="w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
-        type="text" value={MaskNumber(cardNumber)}
+        type="text" value={maskNumber(cardNumber)}
         onChange={handleChange}
         onKeyDown={handleKeyDown} />
     </div>
