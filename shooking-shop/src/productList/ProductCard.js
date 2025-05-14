@@ -1,18 +1,28 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ShookingContext } from "../App";
-import { formatPrice } from "../utils/format";
+import { formatPrice } from "../utils/formatPrice";
+import { useRecoilState } from "recoil";
+import { productsAtom } from "../recoil/atoms/productsAtom";
+import { BASE_URL } from "../mocks/config";
 
 function ProductCard(props) {
-  const productId = props.productId;
-  const { productContents, updateIsCart } = useContext(ShookingContext);
-  const content = productContents.find(item => item.id === productId);
+  const id = props.id;
+  const [products, setProducts] = useRecoilState(productsAtom);
+  const content = products.find(item => item.id === id);
   const [inCart, setInCart] = useState(content.inCart);
   const navigate = useNavigate();
 
   const handleCartClick = () => {
     setInCart(!inCart);
-    updateIsCart(productId);
+    fetch(`${BASE_URL}/api/products/cart/${id}`, {method: 'PATCH'})
+      .then(res => res.json())
+      .then(data => {
+        setProducts((prev) => 
+          prev.map((item) =>
+            item.id === id ? data : item
+          )
+        )
+      });
   }
 
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoAdd, IoRemove } from "react-icons/io5";
-import { formatPrice } from "../utils/format";
+import { formatPrice } from "../utils/formatPrice";
 
 function ProductInCart(props) {
   const { product, numHandler } = props;

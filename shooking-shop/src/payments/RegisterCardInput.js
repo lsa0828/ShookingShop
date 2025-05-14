@@ -8,10 +8,10 @@ import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
 import { BASE_URL } from "../mocks/config";
 import { useSetRecoilState } from "recoil";
-import { cardState } from "../App";
+import { cardsAtom } from "../recoil/atoms/cardsAtom";
 
 function RegisterCardInput({ registerClick }) {
-  const setCards = useSetRecoilState(cardState);
+  const setCards = useSetRecoilState(cardsAtom);
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
   const [cardholder, setCardholder] = useState('');

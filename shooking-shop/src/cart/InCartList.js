@@ -1,20 +1,20 @@
 import { useRecoilState } from "recoil";
 import ProductInCart from "./ProductInCart";
-import { productsInCart } from "./CartPage";
 import { useEffect } from "react";
 import { BASE_URL } from "../mocks/config";
+import { productsInCartAtom } from "../recoil/atoms/productsInCartAtom";
 
 function InCartList() {
-  const [products, setProducts] = useRecoilState(productsInCart);
+  const [productsInCart, setProductsInCart] = useRecoilState(productsInCartAtom);
   
   useEffect(() => {
     fetch(`${BASE_URL}/api/products/incart`)
       .then(res => res.json())
-      .then(data => setProducts(data));
-  }, [setProducts]);
+      .then(data => setProductsInCart(data));
+  }, [setProductsInCart]);
 
   const numHandler = (id, newNum) => {
-    setProducts(prev =>
+    setProductsInCart(prev =>
       prev.map(p =>
         p.id === id ? {...p, num: newNum} : p
       )
@@ -24,7 +24,7 @@ function InCartList() {
 
   return (
     <div className="pt-6 px-6 480:px-4">
-      {products.map((product, index) => (
+      {productsInCart.map((product, index) => (
         <div key={index}>
           <div className="flex justify-center">
             <ProductInCart product={product} numHandler={numHandler} />

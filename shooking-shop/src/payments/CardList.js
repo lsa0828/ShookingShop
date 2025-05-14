@@ -2,10 +2,10 @@ import AddCardButton from "./AddCardButton";
 import CardImage from "./CardImage";
 import CardPayButton from "./CardPayButton";
 import { useRecoilValue } from "recoil";
-import { cardState } from "../App";
+import { cardsAtom } from "../recoil/atoms/cardsAtom";
 
 function CardList({addClick}) {
-  const cards = useRecoilValue(cardState);
+  const cards = useRecoilValue(cardsAtom);
   const isNew = cards.length === 0;
   return (
     <div className="flex justify-center">

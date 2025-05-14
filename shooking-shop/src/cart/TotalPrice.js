@@ -1,10 +1,10 @@
 import { useRecoilValue } from "recoil";
-import { productsInCart } from "./CartPage";
 import PriceComponent from "./PriceComponent";
+import { productsInCartAtom } from "../recoil/atoms/productsInCartAtom";
 
 function TotalPrice() {
-  const products = useRecoilValue(productsInCart);
-  const productTotalPrice = products.reduce((acc, product) => {
+  const productsInCart = useRecoilValue(productsInCartAtom);
+  const productTotalPrice = productsInCart.reduce((acc, product) => {
       return acc + product.price * product.num;
     }, 0);
   const deliveryCharge = productTotalPrice >= 100000 ? 0 : 3000;

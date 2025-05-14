@@ -1,16 +1,16 @@
-import { useContext } from 'react';
 import ProductList from './ProduckList';
-import { ShookingContext } from '../App';
 import ProductListHeader from './ProductListHeader';
 import ProductListTitle from './ProductListTitle';
+import { useRecoilValue } from 'recoil';
+import { productsAtom } from '../recoil/atoms/productsAtom';
 
 function ProductListPage() {
-  const { productContents } = useContext(ShookingContext);
-  const cartNum = productContents.filter(product => product.inCart).length;
+  const products = useRecoilValue(productsAtom);
+  const cartNum = products.filter(product => product.inCart).length;
   return (
     <div>
       <ProductListHeader cartNum={cartNum} />
-      <ProductListTitle num={productContents.length} />
+      <ProductListTitle num={products.length} />
       <ProductList />
     </div>
   );
