@@ -7,7 +7,7 @@ import { useRecoilCallback, useSetRecoilState } from "recoil";
 import { productInCartIdsAtom } from "../recoil/atoms/productInCartIdsAtom";
 import { BASE_URL } from "../mocks/config";
 import { productInCartAtomFamily } from "../recoil/atoms/productInCartAtomFamily";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 function CartPage() {
   const setProductInCartIds = useSetRecoilState(productInCartIdsAtom);

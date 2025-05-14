@@ -1,6 +1,7 @@
 import { useRecoilValue } from "recoil";
 import ProductInCart from "./ProductInCart";
 import { productInCartIdsAtom } from "../recoil/atoms/productInCartIdsAtom";
+import React from "react";
 
 function InCartList() {
   const productInCartIds = useRecoilValue(productInCartIdsAtom);

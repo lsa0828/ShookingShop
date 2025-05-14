@@ -9,4 +9,4 @@ function ButtonHandleNum({children, onClick}) {
   );
 }
 
-export default React.memo(ButtonHandleNum);
+export default ButtonHandleNum;

@@ -1,5 +1,6 @@
 //import { useState } from "react";
 
+import React from "react";
 import { maskDate } from "./utils/maskDate";
 
 function CardExpirationDateInput({expirationDate, setExpirationDate}) {
@@ -43,4 +44,4 @@ function CardExpirationDateInput({expirationDate, setExpirationDate}) {
   );
 }
 
-export default CardExpirationDateInput;
+export default React.memo(CardExpirationDateInput);

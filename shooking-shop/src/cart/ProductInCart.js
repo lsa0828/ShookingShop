@@ -12,8 +12,6 @@ function ProductInCart({ id }) {
   const removeIcon = useMemo(() => <IoRemove/>, []);
   const addIcon = useMemo(() => <IoAdd />, []);
 
-  console.log(`Rendering ${id}`);
-
   const changeNum = useCallback((newNum) => {
     fetch(`${BASE_URL}/api/products/incart/${id}&${newNum}`, {method: 'PATCH'})
       .then(res => res.json())
@@ -60,4 +58,4 @@ function ProductInCart({ id }) {
   );
 }
 
-export default React.memo(ProductInCart);
+export default ProductInCart;
