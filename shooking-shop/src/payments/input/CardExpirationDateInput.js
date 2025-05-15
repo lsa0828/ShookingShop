@@ -1,6 +1,7 @@
 //import { useState } from "react";
 
-import { MaskDate } from "./utils/MaskDate";
+import React from "react";
+import { maskDate } from "./utils/maskDate";
 
 function CardExpirationDateInput({expirationDate, setExpirationDate}) {
   //const [expirationDate, setExpirationDate] = useState('');
@@ -35,7 +36,7 @@ function CardExpirationDateInput({expirationDate, setExpirationDate}) {
     <div className="m-4">
       <p className="text-gray-700">만료일</p>
       <input className="w-36 160:w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
-        type="text" value={MaskDate(expirationDate)}
+        type="text" value={maskDate(expirationDate)}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         placeholder="MM / YY" />
@@ -43,4 +44,4 @@ function CardExpirationDateInput({expirationDate, setExpirationDate}) {
   );
 }
 
-export default CardExpirationDateInput;
+export default React.memo(CardExpirationDateInput);

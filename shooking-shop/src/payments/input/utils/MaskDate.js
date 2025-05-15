@@ -1,4 +1,4 @@
-export const MaskDate = (date) => {
+export const maskDate = (date) => {
   if (date.length >= 2) {
     const mm = date.slice(0, 2);
     if (Number(mm) < 1 || Number(mm) > 12) return '';

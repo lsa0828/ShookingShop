@@ -1,23 +1,39 @@
 import CartHeader from "./CartHeader";
 import CartTitle from "./CartTitle";
-import { atom } from "recoil";
 import InCartList from "./InCartList";
 import TotalPrice from "./TotalPrice";
-import PayInCartButton from "./PayInCartButton";
-
-export const productsInCart = atom({
-  key: 'productsInCart',
-  default: []
-});
+import ButtonPayInCart from "./ButtonPayInCart";
+import { useRecoilCallback, useSetRecoilState } from "recoil";
+import { productInCartIdsAtom } from "../recoil/atoms/productInCartIdsAtom";
+import { BASE_URL } from "../mocks/config";
+import { productInCartAtomFamily } from "../recoil/atoms/productInCartAtomFamily";
+import { useEffect } from "react";
 
 function CartPage() {
+  const setProductInCartIds = useSetRecoilState(productInCartIdsAtom);
+  
+  const setProductInCartAtoms = useRecoilCallback(({set}) => () => {
+    fetch(`${BASE_URL}/api/products/incart`)
+      .then(res => res.json())
+      .then(data => {
+        setProductInCartIds(data.map(p => p.id));
+        data.forEach((product) => {
+          set(productInCartAtomFamily(product.id), product)
+        })
+      });
+  });
+    
+  useEffect(() => {
+    setProductInCartAtoms();
+  }, [setProductInCartAtoms]);
+
   return (
     <div>
       <CartHeader />
       <CartTitle />
       <InCartList />
       <TotalPrice />
-      <PayInCartButton />
+      <ButtonPayInCart />
     </div>
   );
 }

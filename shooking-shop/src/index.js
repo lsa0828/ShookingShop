@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { worker } from './mocks/worker';
 import { RecoilRoot } from 'recoil';
 
 async function prepare() {
+  const { worker } = await import('./mocks/worker');
   await worker.start({
     serviceWorker: {
       url: process.env.NODE_ENV === 'production'
