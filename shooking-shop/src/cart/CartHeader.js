@@ -6,7 +6,7 @@ function CartHeader() {
   const navigate = useNavigate();
   const content = (
     <div className="flex items-center justify-center">
-      <button onClick={() => navigate(-1)}>
+      <button onClick={() => navigate('/')}>
         <GoArrowLeft className="text-[35px] text-white" />
       </button>
     </div>
