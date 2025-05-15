@@ -1,11 +1,11 @@
 import { RecoilRoot } from "recoil";
-import CartTitle from "../CartTitle";
+import CartPage from "../CartPage";
 import { productIdsAtom } from "../../recoil/atoms/productIdsAtom";
 import { productAtomFamily } from "../../recoil/atoms/productAtomFamily";
 
 export default {
-  title: 'Cart/CartTitle',
-  component: CartTitle,
+  title: 'Cart/CartPage',
+  component: CartPage,
   args: {
   },
   render: () => {
@@ -22,7 +22,7 @@ export default {
             inCart: true
           });
         }}>
-        <CartTitle />
+        <CartPage />
       </RecoilRoot>
     );
   }

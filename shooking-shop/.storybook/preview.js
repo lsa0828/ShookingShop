@@ -1,9 +1,9 @@
 /** @type { import('@storybook/react').Preview } */
 import { MemoryRouter } from 'react-router-dom';
 import '../src/index.css';
-import { RecoilRoot } from 'recoil';
 import { handlers } from '../src/mocks/handlers';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
+import { RecoilRoot } from 'recoil';
 
 // MSW 초기화
 initialize();

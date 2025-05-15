@@ -6,7 +6,7 @@ import { productAtomFamily } from "../recoil/atoms/productAtomFamily";
 import { BASE_URL } from "../mocks/config";
 import ButtonProductCard from "./ButtonProductCard";
 
-const ProductCard = React.memo(({id}) => {
+function ProductCard({id}) {
   const [product, setProduct] = useRecoilState(productAtomFamily(id));
   const navigate = useNavigate();
 
@@ -49,6 +49,6 @@ const ProductCard = React.memo(({id}) => {
       </div>
     </div>
   );
-});
+};
 
-export default ProductCard;
+export default React.memo(ProductCard);
