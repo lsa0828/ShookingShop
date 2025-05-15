@@ -1,3 +1,4 @@
+import React from "react";
 import { maskDate } from "./input/utils/maskDate";
 import { maskNumber } from "./input/utils/maskNumber";
 
@@ -14,4 +15,4 @@ function CardImage({card}) {
   );
 }
 
-export default CardImage;
+export default React.memo(CardImage);

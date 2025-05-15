@@ -52,7 +52,7 @@ export const productHandlers = [
     const product = products.find(p => p.id === Number(id));
     if (product) {
       cartMap[product.id] = num;
-      return HttpResponse.json({message: 'Success'});
+      return HttpResponse.json({id: product.id, image: product.image, brand: product.brand, price: product.price, num: cartMap[product.id]});
     } else {
       return HttpResponse.json({message: 'Product not found'}, {status: 404});
     }

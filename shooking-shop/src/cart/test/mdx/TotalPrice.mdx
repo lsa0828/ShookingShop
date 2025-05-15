@@ -1,0 +1,42 @@
+import { Meta, Story, Canvas, Preview } from '@storybook/addon-docs';
+import TotalPrice from '../../TotalPrice';
+import * as TotalPriceStories from '../TotalPrice.stories';
+
+<Meta title="Cart/TotalPrice" of={TotalPriceStories} />
+
+# TotalPrice
+
+장바구니 **상품 금액 · 배송비 · 총 결제 금액**을 한눈에 보여주는 컴포넌트입니다.  
+금액은 모두 Recoil selector(`inCartTotalPriceSelector`, `deliveryChargeSelector`)에서 계산되므로 **props 없이** `<TotalPrice />`만 렌더링하면 됩니다.
+
+
+## 기능
+
+- **상품 금액**: `inCartTotalPriceSelector`로 계산된 장바구니 상품 총액
+- **배송비**: `deliveryChargeSelector`에서 계산. 상품 금액이 100,000원 미만이면 3,000원. 이상이면 0원
+- **총 금액**: 상품 금액 + 배송비
+
+
+## Story
+
+### Default
+<Story of={TotalPriceStories.Default} />
+
+### Low Price
+<Story of={TotalPriceStories.LowPrice} />
+
+
+## 예제 코드
+
+```jsx
+import TotalPrice from './TotalPrice';
+
+function CartPage() {
+  return (
+    <div>
+      {/* 장바구니 상품 리스트 */}
+      <TotalPrice />
+    </div>
+  );
+}
+```

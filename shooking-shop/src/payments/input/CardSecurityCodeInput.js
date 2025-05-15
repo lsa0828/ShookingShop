@@ -1,3 +1,4 @@
+import React from "react";
 import { GoQuestion } from "react-icons/go";
 
 function CardSecurityCodeInput({securityCode, setSecurityCode}) {
@@ -47,4 +48,4 @@ function CardSecurityCodeInput({securityCode, setSecurityCode}) {
   );
 }
 
-export default CardSecurityCodeInput;
+export default React.memo(CardSecurityCodeInput);

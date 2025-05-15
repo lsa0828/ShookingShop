@@ -1,0 +1,32 @@
+import { Meta, Story, Canvas, Preview } from '@storybook/addon-docs';
+import ButtonPayInCart from '../../ButtonPayInCart';
+import * as ButtonPayInCartStories from '../ButtonPayInCart.stories';
+
+<Meta title="Cart/ButtonPayInCart" component={ButtonPayInCart} />
+
+# ButtonPayInCart
+
+장바구니 페이지에서 **결제하기** 버튼을 보여주는 컴포넌트입니다.  
+클릭 시 결제 모달(`ModalPayments`)이 열립니다.
+
+
+## Story
+
+### Default
+<Story of={ButtonPayInCartStories.Default} />
+
+
+## 예제 코드
+
+```jsx
+import ButtonPayInCart from './ButtonPayInCart';
+
+function CartPage() {
+  return (
+    <div>
+      {/* 장바구니 상품 리스트 */}
+      <ButtonPayInCart />
+    </div>
+  );
+}
+```

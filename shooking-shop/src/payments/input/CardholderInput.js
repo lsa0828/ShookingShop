@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function CardholderInput({cardholder, setCardholder}) {
   //const [cardholder, setCardholder] = useState('');
@@ -25,4 +25,4 @@ function CardholderInput({cardholder, setCardholder}) {
   );
 }
 
-export default CardholderInput;
+export default React.memo(CardholderInput);

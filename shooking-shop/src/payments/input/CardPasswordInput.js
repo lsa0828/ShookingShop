@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 function CardPasswordInput({password, setPassword}) {
   //const [password, setPassword] = useState('');
@@ -48,22 +48,6 @@ function CardPasswordInput({password, setPassword}) {
     }
   }
 
-  // const handleKeyDown = (e, index) => {
-  //   if (e.key === 'Backspace') {
-  //     if (index === 1 && displayPassword.length < 2) {
-  //       e.preventDefault();
-  //       setPassword('');
-  //       setDisplayPassword('');
-  //       firstInputRef.current?.focus();
-  //     }
-  //     return;
-  //   }
-  //   if (!/^\d$/.test(e.key)) {
-  //     e.preventDefault();
-  //     return;
-  //   }
-  // }
-
   return (
     <div className="m-4">
       <p className="text-gray-700">카드 비밀번호</p>
@@ -87,4 +71,4 @@ function CardPasswordInput({password, setPassword}) {
   );
 }
 
-export default CardPasswordInput;
+export default React.memo(CardPasswordInput);

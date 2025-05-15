@@ -1,53 +1,46 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProductListPage from './productList/ProductListPage';
-import { createContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import CartPage from './cart/CartPage';
 import { BASE_URL } from './mocks/config';
-import { atom, useSetRecoilState } from 'recoil';
+import { useRecoilCallback, useSetRecoilState } from 'recoil';
 import PaymentsPage from './payments/PaymentsPage';
 import RegisterCardPage from './payments/RegisterCardPage';
-
-export const ShookingContext = createContext();
-
-export const cardState = atom({
-  key: 'cardState',
-  default: []
-});
+import { productAtomFamily } from './recoil/atoms/productAtomFamily';
+import { productIdsAtom } from './recoil/atoms/productIdsAtom';
+import { cardsAtom } from './recoil/atoms/cardsAtom';
 
 function App() {
-  const [productContents, setProductContents] = useState([]);
-  const setCards = useSetRecoilState(cardState);
+  const setProductIds = useSetRecoilState(productIdsAtom);
+  const setCards = useSetRecoilState(cardsAtom);
 
-  useEffect(() => {
+  const setProductAtoms = useRecoilCallback(({set}) => () => {
     fetch(`${BASE_URL}/api/products`)
       .then(res => res.json())
-      .then(data => setProductContents(data));
+      .then(data => {
+        setProductIds(data.map(p => p.id));
+        data.forEach((product) => {
+          set(productAtomFamily(product.id), product)
+        });
+      });
+  });
+
+  useEffect(() => {
+    setProductAtoms();
     fetch(`${BASE_URL}/api/cards`)
       .then(res => res.json())
       .then(data => setCards(data));
-  }, [setCards]);
-
-  const updateIsCart = async (id) => {
-    const res = await fetch(`${BASE_URL}/api/products/cart/${id}`, {method: 'PATCH'});
-    const updatedProduct = await res.json();
-    setProductContents((prevContents) =>
-      prevContents.map((item) =>
-        item.id === id ? updatedProduct : item
-      )
-    );
-  }
+  });
 
   return (
-    <ShookingContext.Provider value={{productContents, updateIsCart}}>
-      <BrowserRouter basename={BASE_URL}>
-        <Routes>
-          <Route path="" element={<ProductListPage />} />
-          <Route path="/pay" element={<PaymentsPage />} />
-          <Route path="/register" element={<RegisterCardPage />} />
-          <Route path="/cart" element={<CartPage />} />
-        </Routes>
-      </BrowserRouter>
-    </ShookingContext.Provider>
+    <BrowserRouter basename={BASE_URL}>
+      <Routes>
+        <Route path="" element={<ProductListPage />} />
+        <Route path="/pay" element={<PaymentsPage />} />
+        <Route path="/register" element={<RegisterCardPage />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,5 +1,6 @@
 //import { useState } from "react";
 
+import React from "react";
 import { maskNumber } from "./utils/maskNumber";
 
 function CardNumberInput({cardNumber, setCardNumber}) {
@@ -45,4 +46,4 @@ function CardNumberInput({cardNumber, setCardNumber}) {
   );
 }
 
-export default CardNumberInput;
+export default React.memo(CardNumberInput);
