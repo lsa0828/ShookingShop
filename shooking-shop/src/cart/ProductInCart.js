@@ -52,7 +52,7 @@ function ProductInCart({ id }) {
           <ButtonHandleNum onClick={handlerPlus}>
             {addIcon}
           </ButtonHandleNum>
-    </div>
+        </div>
       </div>
     </div>
   );
