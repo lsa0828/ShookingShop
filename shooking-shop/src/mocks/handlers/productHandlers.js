@@ -56,5 +56,16 @@ export const productHandlers = [
     } else {
       return HttpResponse.json({message: 'Product not found'}, {status: 404});
     }
+  }),
+  http.delete(`${BASE_URL}/api/products/incart`, () => {
+    Object.keys(cartMap).forEach((key) => {
+      const id = Number(key);
+      const product = products.find((p) => p.id === id);
+      if (product) {
+        product.inCart = false;
+      }
+      delete cartMap[id];
+    });
+    return HttpResponse.json({message: 'Success Cart Initialization'});
   })
 ];

@@ -17,8 +17,8 @@ function ProductCard({id}) {
   }, [id, setProduct]);
 
   const handlePayClick = useCallback(() => {
-    navigate('/pay');
-  }, [navigate]);
+    navigate('/pay', {state: {totalPrice: product.price, productCount: 1}});
+  }, [navigate, product.price]);
 
   return (
     <div className="border border-gray-200 rounded-xl w-52 480:w-full h-80">

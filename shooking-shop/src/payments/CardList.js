@@ -4,7 +4,7 @@ import CardPayButton from "./CardPayButton";
 import { useRecoilValue } from "recoil";
 import { cardsAtom } from "../recoil/atoms/cardsAtom";
 
-function CardList({addClick}) {
+function CardList({addClick, totalPrice, productCount, isCart}) {
   const cards = useRecoilValue(cardsAtom);
   const isNew = cards.length === 0;
   return (
@@ -13,7 +13,7 @@ function CardList({addClick}) {
         {cards.map((card) => (
           <div key={card.id} className="mb-12">
             <CardImage card={card} />
-            <CardPayButton />
+            <CardPayButton totalPrice={totalPrice} productCount={productCount} isCart={isCart} />
           </div>
         ))}
         <AddCardButton isNew={isNew} onClick={addClick} />

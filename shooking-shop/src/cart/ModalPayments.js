@@ -4,13 +4,13 @@ import CardList from "../payments/CardList";
 import RegisterCardInput from "../payments/RegisterCardInput";
 import { GoChevronLeft } from "react-icons/go";
 
-function ModalPayments({ onClose }) {
+function ModalPayments({ onClose, totalPrice, productCount }) {
   const [isRegister, setIsRegister] = useState(false);
   if (!isRegister) {
     return (
       <Modal onClose={onClose}>
         <b className="text-xl">보유 카드</b>
-        <CardList addClick={() => setIsRegister(true)} />
+        <CardList addClick={() => setIsRegister(true)} totalPrice={totalPrice} productCount={productCount} isCart={true} />
       </Modal>
     );
   } else {
