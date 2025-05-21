@@ -6,7 +6,6 @@ import { BASE_URL } from './mocks/config';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
 import PaymentsPage from './payments/PaymentsPage';
 import RegisterCardPage from './payments/RegisterCardPage';
-import { cardsAtom } from './recoil/atoms/cardsAtom';
 import PaymentCompletedPage from './payments/PaymentCompletedPage';
 import NotFoundPage from './NotFoundPage';
 import ProductDetailPage from './productDetail/ProductDetailPage';
@@ -18,10 +17,9 @@ import { numInCartIdsAtom } from './recoil/atoms/numInCartIdsAtom';
 function App() {
   const setProductIds = useSetRecoilState(productIdsAtom);
   const setNumInCartIds = useSetRecoilState(numInCartIdsAtom);
-  const setCards = useSetRecoilState(cardsAtom);
 
   const setProductAtoms = useRecoilCallback(({set}) => () => {
-    fetch(`${BASE_URL}/api/products`)
+    fetch(`${BASE_URL}/api/products`, {method: 'GET'})
       .then(res => res.json())
       .then(data => {
         setProductIds(data.map(p => p.id));
@@ -32,7 +30,7 @@ function App() {
   });
 
   const setNumInCartAtoms = useRecoilCallback(({set}) => () => {
-    fetch(`${BASE_URL}/api/products/incart`)
+    fetch(`${BASE_URL}/api/products/incart`, {method: 'GET'})
       .then(res => res.json())
       .then(data => {
         setNumInCartIds(data.map(p => p.id));
@@ -45,10 +43,7 @@ function App() {
   useEffect(() => {
     setProductAtoms();
     setNumInCartAtoms();
-    fetch(`${BASE_URL}/api/cards`)
-      .then(res => res.json())
-      .then(data => setCards(data));
-  }, [setProductAtoms, setNumInCartAtoms, setCards]);
+  }, [setProductAtoms, setNumInCartAtoms]);
 
   return (
     <BrowserRouter basename={BASE_URL}>

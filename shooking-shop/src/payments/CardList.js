@@ -1,12 +1,19 @@
 import AddCardButton from "./AddCardButton";
 import CardImage from "./CardImage";
 import CardPayButton from "./CardPayButton";
-import { useRecoilValue } from "recoil";
-import { cardsAtom } from "../recoil/atoms/cardsAtom";
+import { useEffect, useState } from "react";
+import { BASE_URL } from "../mocks/config";
 
 function CardList({addClick, totalPrice, productCount, isCart}) {
-  const cards = useRecoilValue(cardsAtom);
+  const [cards, setCards] = useState([]);
   const isNew = cards.length === 0;
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/cards`, {method: 'GET'})
+      .then(res => res.json())
+      .then(data => setCards(data));
+  }, []);
+
   return (
     <div className="flex justify-center">
       <div>
