@@ -1,25 +1,44 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../utils/formatPrice";
-import { useRecoilState } from "recoil";
+import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
 import { productAtomFamily } from "../recoil/atoms/productAtomFamily";
 import { BASE_URL } from "../mocks/config";
 import ButtonProductCard from "./ButtonProductCard";
+import { numInCartIdsAtom } from "../recoil/atoms/numInCartIdsAtom";
+import { numInCartAtomFamily } from "../recoil/atoms/numInCartAtomFamily";
 
 function ProductCard({id}) {
-  const [product, setProduct] = useRecoilState(productAtomFamily(id));
+  const product = useRecoilValue(productAtomFamily(id));
+  const setNumInCartIds = useSetRecoilState(numInCartIdsAtom);
+  const numInCart = useRecoilValue(numInCartAtomFamily(id));
   const navigate = useNavigate();
 
-  const handleCardClick = () => {
+  const handleClick = () => {
     navigate(`/product/${id}`);
   }
 
+  const toggleCart = useRecoilCallback(({set, reset}) => () => {
+    fetch(`${BASE_URL}/api/products/incart/${id}`, {method: 'PATCH'})
+      .then(res => res.json())
+      .then(data => {
+        if (data.num > 0) {
+          setNumInCartIds((prev) => {
+            if (prev.includes(data.id)) return prev;
+            return [...prev, data.id];
+          });
+          set(numInCartAtomFamily(id), data);
+        } else {
+          setNumInCartIds((prev) => prev.filter(id => id !== data.id));
+          reset(numInCartAtomFamily(id));
+        }
+      });
+  })
+
   const handleCartClick = useCallback((e) => {
     e.stopPropagation();
-    fetch(`${BASE_URL}/api/products/cart/${id}`, {method: 'PATCH'})
-      .then(res => res.json())
-      .then(data => setProduct(data));
-  }, [id, setProduct]);
+    toggleCart();
+  }, [toggleCart]);
 
   const handlePayClick = useCallback((e) => {
     e.stopPropagation();
@@ -28,7 +47,7 @@ function ProductCard({id}) {
 
   return (
     <div className="border border-gray-200 rounded-xl w-52 480:w-full h-80 cursor-pointer"
-      onClick={handleCardClick}>
+      onClick={handleClick}>
       <img src={`${process.env.PUBLIC_URL}/${product.image}`} alt="임시 신발 사진"
         className="w-full h-1/2 object-cover rounded-t-xl" />
       <div className="p-4 480:p-2 w-full h-1/2 flex flex-col justify-between">
@@ -37,7 +56,7 @@ function ProductCard({id}) {
           <p className="text-gray-500 text-sm mt-1 line-clamp-1">{product.description}</p>
           <p className="text-lg font-medium mt-2">{formatPrice(product.price)}</p>
           <div className="flex">
-            {product.inCart ? 
+            {numInCart ? 
             <ButtonProductCard className="bg-gray-200 hover:bg-gray-100"
               onClick={handleCartClick}>
               담김!

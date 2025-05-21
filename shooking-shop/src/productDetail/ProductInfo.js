@@ -3,20 +3,24 @@ import { formatPrice } from "../utils/formatPrice";
 import ControlNum from "../cart/ControlNum";
 import BlackButton from "../BlackButton";
 import { BASE_URL } from "../mocks/config";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { productAtomFamily } from "../recoil/atoms/productAtomFamily";
-import { productInCartAtomFamily } from "../recoil/atoms/productInCartAtomFamily";
+import { numInCartAtomFamily } from "../recoil/atoms/numInCartAtomFamily";
+import { numInCartIdsAtom } from "../recoil/atoms/numInCartIdsAtom";
+import Toast from "../Toast";
 
 function ProductInfo({ id }) {
-  const [product, setProduct] = useRecoilState(productAtomFamily(Number(id)));
-  const [productInCart, setProductInCart] = useRecoilState(productInCartAtomFamily(Number(id)));
+  const product = useRecoilValue(productAtomFamily(Number(id)));
+  const setNumInCartIds = useSetRecoilState(numInCartIdsAtom);
+  const [numInCart, setNumInCart] = useRecoilState(numInCartAtomFamily(Number(id)));
   const [num, setNum] = useState(0);
+  const [toastMessage, setToastMessage] = useState('');
 
   useEffect(() => {
-    if (productInCart) {
-      setNum(productInCart.num);
+    if (numInCart) {
+      setNum(numInCart.num);
     }
-  }, [productInCart]);
+  }, [numInCart]);
 
   const handlerMinus = () => {
     if(num > 0) {
@@ -28,13 +32,22 @@ function ProductInfo({ id }) {
     setNum(Number(num) + 1);
   }
 
-  const handlerInCart = () => {
-    fetch(`${BASE_URL}/api/products/incart/${product.id}&${num}`, {method: 'PATCH'})
+  const handlerCartClick = () => {
+    fetch(`${BASE_URL}/api/products/incart/${product.id}/${num}`, {method: 'PATCH'})
       .then(res => res.json())
       .then(data => {
-        setProductInCart(data);
-        setProduct({...product, inCart:true});
+        if (data.num > 0) {
+          setNumInCartIds((prev) => {
+            if (prev.includes(data.id)) return prev;
+            return [...prev, data.id];
+          });
+          setNumInCart(data);
+        } else {
+          setNumInCartIds((prev) => prev.filter(id => id !== data.id));
+          setNumInCart(null);
+        }
       });
+    setToastMessage(`장바구니에 ${num}개 담김`);
   }
 
   return (
@@ -48,7 +61,10 @@ function ProductInfo({ id }) {
         <ControlNum handlerMinus={handlerMinus} handlerPlus={handlerPlus}
           num={String(num).padStart(2, '0')} />
       </div>
-      <BlackButton onClick={handlerInCart}>장바구니 담기</BlackButton>
+      <BlackButton onClick={handlerCartClick}>장바구니 담기</BlackButton>
+      {toastMessage && (
+        <Toast message={toastMessage} onClose={() => setToastMessage('')} />
+      )}
     </div>
   );
 }
