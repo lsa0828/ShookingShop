@@ -8,6 +8,7 @@ import PaymentsPage from './payments/PaymentsPage';
 import RegisterCardPage from './payments/RegisterCardPage';
 import { cardsAtom } from './recoil/atoms/cardsAtom';
 import PaymentCompletedPage from './payments/PaymentCompletedPage';
+import NotFoundPage from './NotFoundPage';
 
 function App() {
   const setCards = useSetRecoilState(cardsAtom);
@@ -26,6 +27,7 @@ function App() {
         <Route path="/pay/completed" element={<PaymentCompletedPage />} />
         <Route path="/register" element={<RegisterCardPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
