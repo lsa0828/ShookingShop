@@ -1,16 +1,13 @@
-import React, { useCallback, useMemo } from "react";
-import { IoAdd, IoRemove } from "react-icons/io5";
+import { useCallback } from "react";
 import { formatPrice } from "../utils/formatPrice";
 import { useRecoilState } from "recoil";
 import { BASE_URL } from "../mocks/config";
-import ButtonHandleNum from "./ButtonHandleNum";
 import { productInCartAtomFamily } from "../recoil/atoms/productInCartAtomFamily";
+import ControlNum from "./ControlNum";
 
 function ProductInCart({ id }) {
   const [product, setProduct] = useRecoilState(productInCartAtomFamily(id));
   const { image, brand, price, num } = product;
-  const removeIcon = useMemo(() => <IoRemove/>, []);
-  const addIcon = useMemo(() => <IoAdd />, []);
 
   const changeNum = useCallback((newNum) => {
     fetch(`${BASE_URL}/api/products/incart/${id}&${newNum}`, {method: 'PATCH'})
@@ -44,14 +41,8 @@ function ProductInCart({ id }) {
           <p className="text-md font-semibold text-gray-600 line-clamp-1">{brand}</p>
           <p className="text-2xl font-bold text-gray-800">{formatPrice(price)}</p>
         </div>
-        <div className="flex items-center gap-2 mt-2">
-          <ButtonHandleNum onClick={handlerMinus}>
-            {removeIcon}
-          </ButtonHandleNum>
-          <p className="px-2 text-lg text-center">{num}</p>
-          <ButtonHandleNum onClick={handlerPlus}>
-            {addIcon}
-          </ButtonHandleNum>
+        <div className="mt-2">
+          <ControlNum handlerMinus={handlerMinus} handlerPlus={handlerPlus} num={num} />
         </div>
       </div>
     </div>

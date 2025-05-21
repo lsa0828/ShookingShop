@@ -33,7 +33,7 @@ function ProductCard({id}) {
         className="w-full h-1/2 object-cover rounded-t-xl" />
       <div className="p-4 480:p-2 w-full h-1/2 flex flex-col justify-between">
         <div>
-          <h4 className="text-lg font-semibold">{product.brand}</h4>
+          <p className="text-lg font-semibold">{product.brand}</p>
           <p className="text-gray-500 text-sm mt-1 line-clamp-1">{product.description}</p>
           <p className="text-lg font-medium mt-2">{formatPrice(product.price)}</p>
           <div className="flex">

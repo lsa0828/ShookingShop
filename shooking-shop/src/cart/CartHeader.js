@@ -7,7 +7,7 @@ function CartHeader() {
   return (
     <Header>
       <div className="flex items-center justify-center">
-        <button onClick={() => navigate('/')}>
+        <button onClick={() => navigate(-1)}>
           <GoArrowLeft className="text-[35px] text-white" />
         </button>
       </div>
