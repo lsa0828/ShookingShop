@@ -1,11 +1,13 @@
 import Title from "../Title";
 import { useRecoilValue } from "recoil";
-import { cartNumSelector } from "../recoil/selectors/cartNumSelector";
+import { cartCountSelector } from "../recoil/selectors/cartCountSelector";
+import { cartTotalNumSelector } from "../recoil/selectors/cartTotalNumSelector";
 
 function CartTitle() {
-  const cartNum = useRecoilValue(cartNumSelector);
+  const cartCount = useRecoilValue(cartCountSelector);
+  const cartTotalNum = useRecoilValue(cartTotalNumSelector);
   const title = "장바구니";
-  const detail = `현재 ${cartNum}개의 상품이 담겨있습니다.`;
+  const detail = `현재 ${cartCount}개의 상품이 담겨있으며 총 수량은 ${cartTotalNum}개입니다.`;
   return (
     <Title title={title} detail={detail} />
   );
