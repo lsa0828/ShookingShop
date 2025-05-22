@@ -7,11 +7,9 @@ import CardSecurityCodeInput from "./input/CardSecurityCodeInput";
 import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
 import { BASE_URL } from "../mocks/config";
-import { useSetRecoilState } from "recoil";
-import { cardsAtom } from "../recoil/atoms/cardsAtom";
 
 function RegisterCardInput({registerClick}) {
-  const setCards = useSetRecoilState(cardsAtom);
+  //const setCards = useSetRecoilState(cardsAtom);
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
   const [cardholder, setCardholder] = useState('');
@@ -25,14 +23,14 @@ function RegisterCardInput({registerClick}) {
     securityCode.length === 3 &&
     password.length === 2;
 
-  const addCard = async (newCard) => {
-    const res = await fetch(`${BASE_URL}/api/cards/add`, {
+  const addCard = (newCard) => {
+    fetch(`${BASE_URL}/api/cards/add`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(newCard)
     });
-    const savedCard = await res.json();
-    setCards((prev) => [...prev, savedCard]);
+    //const savedCard = await res.json();
+    //setCards((prev) => [...prev, savedCard]);
   };
 
   const handleRegister = async () => {

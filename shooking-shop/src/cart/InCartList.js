@@ -1,13 +1,13 @@
 import { useRecoilValue } from "recoil";
 import ProductInCart from "./ProductInCart";
-import { productInCartIdsAtom } from "../recoil/atoms/productInCartIdsAtom";
+import { numInCartIdsAtom } from "../recoil/atoms/numInCartIdsAtom";
 import React from "react";
 
 function InCartList() {
-  const productInCartIds = useRecoilValue(productInCartIdsAtom);
+  const numInCartIds = useRecoilValue(numInCartIdsAtom);
   return (
     <div className="pt-6 px-6 480:px-4">
-      {productInCartIds.map((id) => (
+      {numInCartIds.map((id) => (
         <div key={id}>
           <div className="flex justify-center">
             <ProductInCart id={id} />

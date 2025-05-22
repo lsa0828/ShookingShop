@@ -4,15 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 function CartHeader() {
   const navigate = useNavigate();
-  const content = (
-    <div className="flex items-center justify-center">
-      <button onClick={() => navigate('/')}>
-        <GoArrowLeft className="text-[35px] text-white" />
-      </button>
-    </div>
-  )
   return (
-    <Header content={content} />
+    <Header>
+      <div className="flex items-center justify-center">
+        <button onClick={() => navigate(-1)}>
+          <GoArrowLeft className="text-[35px] text-white" />
+        </button>
+      </div>
+    </Header>
   );
 }
 
