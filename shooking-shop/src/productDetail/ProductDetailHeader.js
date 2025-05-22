@@ -1,14 +1,18 @@
 import { GoArrowLeft } from "react-icons/go";
 import Header from "../Header";
 import ButtonCartIcon from "../productList/ButtonCartIcon";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ProductDetailHeader() {
+  const navigate = useNavigate();
+  const handlerBackClick = () => {
+    navigate(-1);
+  }
   return (
     <Header>
-      <Link to="/">
+      <button onClick={handlerBackClick}>
         <GoArrowLeft className="text-[35px] text-white" />
-      </Link>
+      </button>
       <div className="ml-auto">
         <ButtonCartIcon />
       </div>

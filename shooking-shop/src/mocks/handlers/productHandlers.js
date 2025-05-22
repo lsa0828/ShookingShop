@@ -5,10 +5,13 @@ const products = [
   {id: 1, image: "temp_shoes.jpeg", brand: "브랜드A", description: "곰돌이 아기신발 운동화 아동 스니커즈", price: 38000},
   {id: 2, image: "temp_shoes2.jpeg", brand: "브랜드B", description: "편안하고 착용감이 좋은 신발", price: 33000},
   {id: 3, image: "temp_shoes3.jpeg", brand: "브랜드C", description: "편리한 건강신발 간호신발 효도화", price: 27000},
-  {id: 4, image: "temp_shoes4.jpeg", brand: "브랜드D", description: "알바 구두 단화 찍찍이 발편한 로퍼 근무화", price: 19000},
-  {id: 5, image: "temp_shoes5.jpeg", brand: "브랜드E", description: "신상 슈즈 추천템, 올해 추천 신발", price: 26000},
-  {id: 6, image: "temp_shoes6.jpeg", brand: "브랜드F", description: "남성 신발", price: 24000},
-  {id: 7, image: "temp_shoes7.jpeg", brand: "브랜드F", description: "여성 컴포트화", price: 31000},
+  {id: 4, image: "temp_shoes4.jpeg", brand: "브랜드A", description: "알바 구두 단화 찍찍이 발편한 로퍼 근무화", price: 19000},
+  {id: 5, image: "temp_shoes5.jpeg", brand: "브랜드A", description: "신상 슈즈 추천템, 올해 추천 신발", price: 26000},
+  {id: 6, image: "temp_shoes6.jpeg", brand: "브랜드B", description: "남성 신발", price: 24000},
+  {id: 7, image: "temp_shoes7.jpeg", brand: "브랜드C", description: "여성 컴포트화", price: 31000},
+  {id: 8, image: "temp_shoes8.jpeg", brand: "브랜드C", description: "Nike vermelho sem par", price: 28000},
+  {id: 9, image: "temp_shoes9.jpeg", brand: "브랜드B", description: "비 오는 날의 럭셔리 무드", price: 32000},
+  {id: 10, image: "temp_shoes10.jpeg", brand: "브랜드B", description: "신상 필라코리아", price: 30000},
 ];
 
 let numsInCart = [
