@@ -61,7 +61,7 @@ function ProductInfo({ id }) {
         <ControlNum handlerMinus={handlerMinus} handlerPlus={handlerPlus}
           num={String(num).padStart(2, '0')} />
       </div>
-      <BlackButton onClick={handlerCartClick}>장바구니 담기</BlackButton>
+      <BlackButton onClick={handlerCartClick} data-testid="detail-in-cart">장바구니 담기</BlackButton>
       {toastMessage && (
         <Toast message={toastMessage} onClose={() => setToastMessage('')} />
       )}

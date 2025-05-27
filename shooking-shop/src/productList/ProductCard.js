@@ -47,7 +47,7 @@ function ProductCard({id}) {
 
   return (
     <div className="border border-gray-200 rounded-xl w-52 480:w-full h-80 cursor-pointer"
-      onClick={handleClick}>
+      onClick={handleClick} data-testid="product-card">
       <img src={`${process.env.PUBLIC_URL}/${product.image}`} alt="임시 신발 사진"
         className="w-full h-1/2 object-cover rounded-t-xl" />
       <div className="p-4 480:p-2 w-full h-1/2 flex flex-col justify-between">
