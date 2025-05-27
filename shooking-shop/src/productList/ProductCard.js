@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../utils/formatPrice";
 import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
 import { productAtomFamily } from "../recoil/atoms/productAtomFamily";
-import { BASE_URL } from "../mocks/config";
 import ButtonProductCard from "./ButtonProductCard";
 import { numInCartIdsAtom } from "../recoil/atoms/numInCartIdsAtom";
 import { numInCartAtomFamily } from "../recoil/atoms/numInCartAtomFamily";
+import { fetchPatchInCartById } from '../api/product';
 
 function ProductCard({id}) {
   const product = useRecoilValue(productAtomFamily(id));
@@ -19,8 +19,7 @@ function ProductCard({id}) {
   }
 
   const toggleCart = useRecoilCallback(({set, reset}) => () => {
-    fetch(`${BASE_URL}/api/products/incart/${id}`, {method: 'PATCH'})
-      .then(res => res.json())
+    fetchPatchInCartById(id)
       .then(data => {
         if (data.num > 0) {
           setNumInCartIds((prev) => {

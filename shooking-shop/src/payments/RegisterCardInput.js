@@ -6,7 +6,7 @@ import CardPasswordInput from "./input/CardPasswordInput";
 import CardSecurityCodeInput from "./input/CardSecurityCodeInput";
 import CardImage from "./CardImage";
 import RegisterCardButton from "./RegisterCardButton";
-import { BASE_URL } from "../mocks/config";
+import { fetchPostCard } from "../api/card";
 
 function RegisterCardInput({registerClick}) {
   //const setCards = useSetRecoilState(cardsAtom);
@@ -24,11 +24,7 @@ function RegisterCardInput({registerClick}) {
     password.length === 2;
 
   const addCard = (newCard) => {
-    fetch(`${BASE_URL}/api/cards/add`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(newCard)
-    });
+    fetchPostCard(newCard);
     //const savedCard = await res.json();
     //setCards((prev) => [...prev, savedCard]);
   };

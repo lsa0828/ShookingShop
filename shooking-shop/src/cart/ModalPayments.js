@@ -3,21 +3,19 @@ import Modal from "../Modal";
 import CardList from "../payments/CardList";
 import RegisterCardInput from "../payments/RegisterCardInput";
 import { GoChevronLeft } from "react-icons/go";
-import { BASE_URL } from "../mocks/config";
+import { fetchGetCardList } from "../api/card";
 
 function ModalPayments({ onClose, totalPrice, productCount }) {
   const [isRegister, setIsRegister] = useState(false);
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/cards`, {method: 'GET'})
-      .then(res => res.json())
+    fetchGetCardList()
       .then(data => setCards(data));
   }, []);
 
   const handleRegisterClick = async () => {
-    await fetch(`${BASE_URL}/api/cards`, {method: 'GET'})
-      .then(res => res.json())
+    await fetchGetCardList()
       .then(data => setCards(data));
     setIsRegister(false);
   }

@@ -13,14 +13,14 @@ import { productIdsAtom } from './recoil/atoms/productIdsAtom';
 import { productAtomFamily } from './recoil/atoms/productAtomFamily';
 import { numInCartAtomFamily } from './recoil/atoms/numInCartAtomFamily';
 import { numInCartIdsAtom } from './recoil/atoms/numInCartIdsAtom';
+import { fetchGetProductList, fetchGetProductsInCart } from './api/product';
 
 function App() {
   const setProductIds = useSetRecoilState(productIdsAtom);
   const setNumInCartIds = useSetRecoilState(numInCartIdsAtom);
 
   const setProductAtoms = useRecoilCallback(({set}) => () => {
-    fetch(`${BASE_URL}/api/products`, {method: 'GET'})
-      .then(res => res.json())
+    fetchGetProductList()
       .then(data => {
         setProductIds(data.map(p => p.id));
         data.forEach((product) => {
@@ -30,8 +30,7 @@ function App() {
   });
 
   const setNumInCartAtoms = useRecoilCallback(({set}) => () => {
-    fetch(`${BASE_URL}/api/products/incart`, {method: 'GET'})
-      .then(res => res.json())
+    fetchGetProductsInCart()
       .then(data => {
         setNumInCartIds(data.map(p => p.id));
         data.forEach((product) => {
