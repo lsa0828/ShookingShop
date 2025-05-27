@@ -53,12 +53,14 @@ function CardPasswordInput({password, setPassword}) {
       <p className="text-gray-700">카드 비밀번호</p>
       <div className="grid grid-cols-4 gap-1 w-fit">
         <input className="p-3 w-12 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
+          name="password1"
           ref={firstInputRef}
           type="text" value={password[0] ? '●' : ''}
           onChange={(e) => handleChange(e, 0)}
           onKeyDown={(e) => handleKeyDown(e, 0)}
           maxLength={1} />
         <input className="p-3 w-12 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
+          name="password2"
           ref={secondInputRef}
           type="text" value={password[1] ? '●' : ''}
           onChange={(e) => handleChange(e, 1)}

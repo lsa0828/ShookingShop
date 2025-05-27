@@ -17,6 +17,7 @@ function CardholderInput({cardholder, setCardholder}) {
         <p className="text-gray-700">{cardholderLength}/30</p>
       </div>
       <input className="w-full p-3 text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
+        name="cardholder"
         type="text" value={cardholder}
         onChange={handleChange}
         maxLength={30}

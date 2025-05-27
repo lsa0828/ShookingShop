@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../utils/formatPrice";
 import { useRecoilCallback, useRecoilValue, useSetRecoilState } from "recoil";
 import { productAtomFamily } from "../recoil/atoms/productAtomFamily";
-import { BASE_URL } from "../mocks/config";
 import ButtonProductCard from "./ButtonProductCard";
 import { numInCartIdsAtom } from "../recoil/atoms/numInCartIdsAtom";
 import { numInCartAtomFamily } from "../recoil/atoms/numInCartAtomFamily";
+import { fetchPatchInCartById } from '../api/product';
 
 function ProductCard({id}) {
   const product = useRecoilValue(productAtomFamily(id));
@@ -19,8 +19,7 @@ function ProductCard({id}) {
   }
 
   const toggleCart = useRecoilCallback(({set, reset}) => () => {
-    fetch(`${BASE_URL}/api/products/incart/${id}`, {method: 'PATCH'})
-      .then(res => res.json())
+    fetchPatchInCartById(id)
       .then(data => {
         if (data.num > 0) {
           setNumInCartIds((prev) => {
@@ -47,7 +46,7 @@ function ProductCard({id}) {
 
   return (
     <div className="border border-gray-200 rounded-xl w-52 480:w-full h-80 cursor-pointer"
-      onClick={handleClick}>
+      onClick={handleClick} data-testid="product-card">
       <img src={`${process.env.PUBLIC_URL}/${product.image}`} alt="임시 신발 사진"
         className="w-full h-1/2 object-cover rounded-t-xl" />
       <div className="p-4 480:p-2 w-full h-1/2 flex flex-col justify-between">

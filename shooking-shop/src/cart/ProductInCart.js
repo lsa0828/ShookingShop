@@ -1,18 +1,17 @@
 import { useCallback } from "react";
 import { formatPrice } from "../utils/formatPrice";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { BASE_URL } from "../mocks/config";
 import ControlNum from "./ControlNum";
 import { numInCartAtomFamily } from "../recoil/atoms/numInCartAtomFamily";
 import { productAtomFamily } from "../recoil/atoms/productAtomFamily";
+import { fetchPatchInCartByIdAndNum } from "../api/product";
 
 function ProductInCart({ id }) {
   const product = useRecoilValue(productAtomFamily(id));
   const [numInCart, setNumInCart] = useRecoilState(numInCartAtomFamily(id));
 
   const changeNum = useCallback((newNum) => {
-    fetch(`${BASE_URL}/api/products/incart/${id}/${newNum}`, {method: 'PATCH'})
-      .then(res => res.json())
+    fetchPatchInCartByIdAndNum(id, newNum)
       .then(data => {
         setNumInCart(data);
       });

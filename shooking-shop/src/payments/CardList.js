@@ -2,15 +2,14 @@ import AddCardButton from "./AddCardButton";
 import CardImage from "./CardImage";
 import CardPayButton from "./CardPayButton";
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../mocks/config";
+import { fetchGetCardList } from "../api/card";
 
 function CardList({cards, addClick, totalPrice, productCount, isCart}) {
   const [cardList, setCardList] = useState(cards || []);
   const isNew = cardList.length === 0;
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/cards`, {method: 'GET'})
-      .then(res => res.json())
+    fetchGetCardList()
       .then(data => setCardList(data));
   }, []);
 
