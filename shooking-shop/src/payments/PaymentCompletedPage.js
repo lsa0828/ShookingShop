@@ -13,7 +13,7 @@ function PaymentCompletedPage() {
       <div className="flex flex-grow justify-center items-center">
         <div className="mx-6 480:mx-2 w-[480px] 480:w-full">
           <CompletedMessage totalPrice={totalPrice} productCount={productCount} />
-          <YellowButton onClick={() => navigate('/')}>상품 목록 보기</YellowButton>
+          <YellowButton onClick={() => navigate('/')} data-testid="move-product-list">상품 목록 보기</YellowButton>
         </div>
       </div>
     </div>

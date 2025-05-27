@@ -38,6 +38,7 @@ function CardSecurityCodeInput({securityCode, setSecurityCode}) {
       <p className="text-gray-700">보안 코드(CVC/CVV)</p>
       <div className="flex items-center">
         <input className="w-28 130:w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
+          name="card-security-code"
           type="text" value={maskSecurityCode(securityCode)}
           onChange={handleChange}
           onKeyDown={handleKeyDown}

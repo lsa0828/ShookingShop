@@ -24,7 +24,7 @@ function CardPayButton({totalPrice, productCount, isCart}) {
     navigate('/pay/completed', {state: {totalPrice: totalPrice, productCount: productCount}});
   }
   return (
-    <YellowButton onClick={handleCardPay}>
+    <YellowButton onClick={handleCardPay} data-testid="pay-button">
       이 카드로 결제하기
     </YellowButton>
   );

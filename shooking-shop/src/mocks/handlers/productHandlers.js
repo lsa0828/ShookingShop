@@ -15,8 +15,6 @@ const products = [
 ];
 
 let numsInCart = [
-  {id: 2, num: 2},
-  {id: 3, num: 1}
 ];
 
 export const productHandlers = [

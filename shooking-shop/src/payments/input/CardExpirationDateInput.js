@@ -36,6 +36,7 @@ function CardExpirationDateInput({expirationDate, setExpirationDate}) {
     <div className="m-4">
       <p className="text-gray-700">만료일</p>
       <input className="w-36 160:w-full p-3 text-center text-xl font-semibold bg-gray-200 rounded-lg focus:outline-none"
+        name="card-expiration-date"
         type="text" value={maskDate(expirationDate)}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

@@ -7,8 +7,8 @@ function ControlNum({handlerMinus, handlerPlus, num}) {
       <ButtonHandleNum onClick={handlerMinus}>
         <IoRemove />
       </ButtonHandleNum>
-      <p className="px-2 text-lg text-center">{num}</p>
-      <ButtonHandleNum onClick={handlerPlus}>
+      <p className="px-2 text-lg text-center" data-testid="product-num">{num}</p>
+      <ButtonHandleNum onClick={handlerPlus} data-testid="plus-button">
         <IoAdd />
       </ButtonHandleNum>
     </div>

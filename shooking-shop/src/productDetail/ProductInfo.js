@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { formatPrice } from "../utils/formatPrice";
 import ControlNum from "../cart/ControlNum";
 import BlackButton from "../BlackButton";
-import { BASE_URL } from "../mocks/config";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { productAtomFamily } from "../recoil/atoms/productAtomFamily";
 import { numInCartAtomFamily } from "../recoil/atoms/numInCartAtomFamily";
 import { numInCartIdsAtom } from "../recoil/atoms/numInCartIdsAtom";
 import Toast from "../Toast";
+import { fetchPatchInCartByIdAndNum } from "../api/product";
 
 function ProductInfo({ id }) {
   const product = useRecoilValue(productAtomFamily(Number(id)));
@@ -33,8 +33,7 @@ function ProductInfo({ id }) {
   }
 
   const handlerCartClick = () => {
-    fetch(`${BASE_URL}/api/products/incart/${product.id}/${num}`, {method: 'PATCH'})
-      .then(res => res.json())
+    fetchPatchInCartByIdAndNum(product.id, num)
       .then(data => {
         if (data.num > 0) {
           setNumInCartIds((prev) => {
@@ -61,7 +60,7 @@ function ProductInfo({ id }) {
         <ControlNum handlerMinus={handlerMinus} handlerPlus={handlerPlus}
           num={String(num).padStart(2, '0')} />
       </div>
-      <BlackButton onClick={handlerCartClick}>장바구니 담기</BlackButton>
+      <BlackButton onClick={handlerCartClick} data-testid="detail-in-cart">장바구니 담기</BlackButton>
       {toastMessage && (
         <Toast message={toastMessage} onClose={() => setToastMessage('')} />
       )}
