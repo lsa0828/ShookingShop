@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/ShookingShop/static/css/main.c0c8418e.css",
-    "main.js": "/ShookingShop/static/js/main.01aff862.js",
+    "main.js": "/ShookingShop/static/js/main.07093c9b.js",
     "static/js/532.8e94c77b.chunk.js": "/ShookingShop/static/js/532.8e94c77b.chunk.js",
     "static/js/453.7bb4a82d.chunk.js": "/ShookingShop/static/js/453.7bb4a82d.chunk.js",
     "static/js/694.aa8935ab.chunk.js": "/ShookingShop/static/js/694.aa8935ab.chunk.js",
     "index.html": "/ShookingShop/index.html",
     "main.c0c8418e.css.map": "/ShookingShop/static/css/main.c0c8418e.css.map",
-    "main.01aff862.js.map": "/ShookingShop/static/js/main.01aff862.js.map",
+    "main.07093c9b.js.map": "/ShookingShop/static/js/main.07093c9b.js.map",
     "532.8e94c77b.chunk.js.map": "/ShookingShop/static/js/532.8e94c77b.chunk.js.map",
     "453.7bb4a82d.chunk.js.map": "/ShookingShop/static/js/453.7bb4a82d.chunk.js.map",
     "694.aa8935ab.chunk.js.map": "/ShookingShop/static/js/694.aa8935ab.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0c8418e.css",
-    "static/js/main.01aff862.js"
+    "static/js/main.07093c9b.js"
   ]
 }
