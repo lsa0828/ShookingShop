@@ -1,9 +1,9 @@
 import { useRecoilValue } from "recoil";
-import { sameBrandProductSelector } from "../recoil/selectors/sameBrandProductSelector";
 import SameBrandCard from "./SameBrandCard";
+import { sameBrandProductSelectorFamily } from "../recoil/selectors/sameBrandProductSelectorFamily";
 
 function SameBrandProducts({ product }) {
-  const products = useRecoilValue(sameBrandProductSelector(product.id));
+  const products = useRecoilValue(sameBrandProductSelectorFamily(product.id));
   return (
     <div className="mt-8">
       <p className="mb-2 font-bold text-xl">관련 상품</p>

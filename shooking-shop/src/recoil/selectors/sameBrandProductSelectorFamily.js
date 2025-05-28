@@ -2,8 +2,8 @@ import { selectorFamily } from "recoil";
 import { productAtomFamily } from "../atoms/productAtomFamily";
 import { productIdsAtom } from "../atoms/productIdsAtom";
 
-export const sameBrandProductSelector = selectorFamily({
-  key: 'sameBrandProductSelector',
+export const sameBrandProductSelectorFamily = selectorFamily({
+  key: 'sameBrandProductSelectorFamily',
   get: (id) => ({get}) => {
     const product = get(productAtomFamily(id));
     if (!product) return [];
