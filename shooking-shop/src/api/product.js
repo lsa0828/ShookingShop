@@ -1,21 +1,19 @@
-import { BASE_URL } from "../mocks/config";
+import { call } from "./config/ApiService";
 
 export const fetchGetProductList = () => {
-  return fetch(`${BASE_URL}/api/products`, {method: 'GET'})
-    .then(res => res.json());
+  return call('/api/product/all', 'GET', null)
+    .then((response) => {
+      if (response) {
+        return response.data;
+      }
+    });
 }
 
-export const fetchGetProductsInCart = () => {
-  return fetch(`${BASE_URL}/api/products/incart`, {method: 'GET'})
-    .then(res => res.json());
-}
-
-export const fetchPatchInCartById = (id) => {
-  return fetch(`${BASE_URL}/api/products/incart/${id}`, {method: 'PATCH'})
-    .then(res => res.json());
-}
-
-export const fetchPatchInCartByIdAndNum = (id, num) => {
-  return fetch(`${BASE_URL}/api/products/incart/${id}/${num}`, {method: 'PATCH'})
-    .then(res => res.json());
+export const fetchGetProductImage = (productId) => {
+  return call(`/api/product/image/${productId}`, 'GET', null)
+    .then((response) => {
+      if (response) {
+        return response;
+      }
+    });
 }

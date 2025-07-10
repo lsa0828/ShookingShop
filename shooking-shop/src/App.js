@@ -1,58 +1,62 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ProductListPage from './productList/ProductListPage';
 import { useEffect } from 'react';
-import CartPage from './cart/CartPage';
 import { BASE_URL } from './mocks/config';
-import { useRecoilCallback, useSetRecoilState } from 'recoil';
-import PaymentsPage from './payments/PaymentsPage';
-import RegisterCardPage from './payments/RegisterCardPage';
-import PaymentCompletedPage from './payments/PaymentCompletedPage';
+import ProductListPage from './product/list/page/ProductListPage';
+import ProductDetailPage from './product/detail/page/ProductDetailPage';
+import MemberRegisterPage from './member/register/page/MemberRegisterPage';
+import MemberLoginPage from './member/login/page/MemberLoginPage';
+import CartPage from './cart/page/CartPage';
+import CardListPage from './card/list/page/CardListPage';
+import AddCardPage from './card/add/page/AddCardPage';
+import PreOrderPage from './order/preorder/single/page/PreOrderPage';
+import PreOrderInCartPage from './order/preorder/cart/page/PreOrderInCartPage';
+import OrderCompletedPage from './order/complete/page/OrderCompletedPage';
 import NotFoundPage from './NotFoundPage';
-import ProductDetailPage from './productDetail/ProductDetailPage';
-import { productIdsAtom } from './recoil/atoms/productIdsAtom';
-import { productAtomFamily } from './recoil/atoms/productAtomFamily';
-import { numInCartAtomFamily } from './recoil/atoms/numInCartAtomFamily';
-import { numInCartIdsAtom } from './recoil/atoms/numInCartIdsAtom';
-import { fetchGetProductList, fetchGetProductsInCart } from './api/product';
+import { fetchPostValidate } from './api/member';
+import { useSetProductInCartAtoms } from './utils/useSetProductInCartAtoms';
+import { useResetProductInCartAtoms } from './utils/useResetProductInCartAtoms';
+import { useSetProductAtoms } from './utils/useSetProductAtoms';
+import MyInfoPage from './member/mypage/page/MyInfoPage';
 
 function App() {
-  const setProductIds = useSetRecoilState(productIdsAtom);
-  const setNumInCartIds = useSetRecoilState(numInCartIdsAtom);
-
-  const setProductAtoms = useRecoilCallback(({set}) => () => {
-    fetchGetProductList()
-      .then(data => {
-        setProductIds(data.map(p => p.id));
-        data.forEach((product) => {
-          set(productAtomFamily(product.id), product);
-        });
-      });
-  });
-
-  const setNumInCartAtoms = useRecoilCallback(({set}) => () => {
-    fetchGetProductsInCart()
-      .then(data => {
-        setNumInCartIds(data.map(p => p.id));
-        data.forEach((product) => {
-          set(numInCartAtomFamily(product.id), product);
-        });
-      })
-  });
+  const setProductAtoms = useSetProductAtoms();
+  const setProductInCartAtoms = useSetProductInCartAtoms();
+  const resetProductInCartAtoms = useResetProductInCartAtoms();
 
   useEffect(() => {
     setProductAtoms();
-    setNumInCartAtoms();
-  }, [setProductAtoms, setNumInCartAtoms]);
+    if (localStorage.getItem("ACCESS_TOKEN")) {
+      fetchPostValidate()
+        .then(data => {
+          if(data) {
+            setProductInCartAtoms();
+          } else {
+            localStorage.removeItem("ACCESS_TOKEN");
+          }
+        })
+        .catch(error => {
+          console.log("token validation failed", error);
+          localStorage.removeItem("ACCESS_TOKEN");
+        })
+    } else {
+      resetProductInCartAtoms();
+    }
+  }, [setProductAtoms, setProductInCartAtoms, resetProductInCartAtoms]);
 
   return (
     <BrowserRouter basename={BASE_URL}>
       <Routes>
-        <Route path="" element={<ProductListPage />} />
+        <Route path="/" element={<ProductListPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
-        <Route path="/pay" element={<PaymentsPage />} />
-        <Route path="/pay/completed" element={<PaymentCompletedPage />} />
-        <Route path="/register" element={<RegisterCardPage />} />
+        <Route path="/register" element={<MemberRegisterPage />} />
+        <Route path="/login" element={<MemberLoginPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/card" element={<CardListPage />} />
+        <Route path="/card/add" element={<AddCardPage />} />
+        <Route path="/preorder/:id" element={<PreOrderPage />} />
+        <Route path="/preorder/cart" element={<PreOrderInCartPage />} />
+        <Route path="/order/completed" element={<OrderCompletedPage />} />
+        <Route path="/mypage" element={<MyInfoPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

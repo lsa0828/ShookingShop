@@ -1,14 +1,14 @@
 import { selector } from "recoil";
-import { numInCartAtomFamily } from "../atoms/numInCartAtomFamily";
-import { numInCartIdsAtom } from "../atoms/numInCartIdsAtom";
+import { productInCartAtomFamily } from "../atoms/productInCartAtomFamily";
+import { productInCartIdsAtom } from "../atoms/productInCartIdsAtom";
 
 export const cartCountSelector = selector({
   key: 'cartCountSelector',
   get: ({ get }) => {
-    const cartIds = get(numInCartIdsAtom);
+    const cartIds = get(productInCartIdsAtom);
     return cartIds.reduce((count, id) => {
-      const item = get(numInCartAtomFamily(id));
-      return item && item.num > 0 ? count + 1 : count;
+      const item = get(productInCartAtomFamily(id));
+      return item && item.quantity > 0 ? count + 1 : count;
     }, 0);
   }
 })

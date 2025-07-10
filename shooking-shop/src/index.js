@@ -6,14 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 
 async function prepare() {
-  const { worker } = await import('./mocks/worker');
+  /*const { worker } = await import('./mocks/worker');
   await worker.start({
     serviceWorker: {
       url: process.env.NODE_ENV === 'production'
         ? '/ShookingShop/mockServiceWorker.js'
         : '/mockServiceWorker.js',
     }
-  });
+  });*/
 
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(

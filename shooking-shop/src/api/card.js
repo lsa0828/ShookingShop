@@ -1,14 +1,32 @@
-import { BASE_URL } from "../mocks/config";
+import { call } from "./config/ApiService";
 
 export const fetchGetCardList = () => {
-  return fetch(`${BASE_URL}/api/cards`, {method: 'GET'})
-    .then(res => res.json());
+  return call('/api/card', 'GET', null)
+    .then((response) => {
+      if (response) {
+        return response.data;
+      }
+    });
+}
+
+export const fetchGetCard = (cardId) => {
+  return call(`/api/card/${cardId}`, 'GET', null)
+    .then((response) => {
+      if (response) {
+        return response.data;
+      }
+    })
 }
 
 export const fetchPostCard = (newCard) => {
-  return fetch(`${BASE_URL}/api/cards/add`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(newCard)
-  });
+  return call('/api/card/add', 'POST', newCard)
+    .then((response) => {
+      if (response) {
+        return response.data;
+      }
+    });
+}
+
+export const fetchDeleteCard = (cardId) => {
+  return call(`/api/card/${cardId}`, 'DELETE', null);
 }
