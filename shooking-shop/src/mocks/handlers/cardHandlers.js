@@ -15,10 +15,10 @@ const cards = [
 const cards = [];
 
 export const cardHandlers = [
-  http.get(`${BASE_URL}/api/cards`, () => {
+  http.get(`${BASE_URL}/api/card`, () => {
     return HttpResponse.json(cards);
   }),
-  http.post(`${BASE_URL}/api/cards/add`, async ({ request }) => {
+  http.post(`${BASE_URL}/api/card/add`, async ({ request }) => {
     const newCard = await request.json();
     const newId = crypto.randomUUID();
     newCard.id = newId;

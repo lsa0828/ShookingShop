@@ -1,46 +1,61 @@
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import { productInCartAtomFamily } from "../recoil/atoms/productInCartAtomFamily";
+import { productImageAtomFamily } from "../recoil/atoms/productImageAtomFamily";
 import { useCallback } from "react";
+import { fetchDeleteCartById, fetchPatchCartByIdAndQuantity } from "../api/cart";
 import { formatPrice } from "../utils/formatPrice";
-import { useRecoilState, useRecoilValue } from "recoil";
-import ControlNum from "./ControlNum";
-import { numInCartAtomFamily } from "../recoil/atoms/numInCartAtomFamily";
-import { productAtomFamily } from "../recoil/atoms/productAtomFamily";
-import { fetchPatchInCartByIdAndNum } from "../api/product";
+import ControlQuantity from "../sample/ControlQuantity";
+import { IoTrashOutline } from "react-icons/io5";
+import { productInCartIdsAtom } from "../recoil/atoms/productInCartIdsAtom";
 
 function ProductInCart({ id }) {
-  const product = useRecoilValue(productAtomFamily(id));
-  const [numInCart, setNumInCart] = useRecoilState(numInCartAtomFamily(id));
+  const [productInCart, setProductInCart] = useRecoilState(productInCartAtomFamily(id));
+  const resetProductInCart = useResetRecoilState(productInCartAtomFamily(id));
+  const setCartIds = useSetRecoilState(productInCartIdsAtom);
+  const image = useRecoilValue(productImageAtomFamily(id));
 
-  const changeNum = useCallback((newNum) => {
-    fetchPatchInCartByIdAndNum(id, newNum)
+  const changeQuantity = useCallback((quantity) => {
+    fetchPatchCartByIdAndQuantity(id, quantity)
       .then(data => {
-        setNumInCart(data);
+        setProductInCart(data);
       });
-  }, [id, setNumInCart]);
+  }, [id, setProductInCart]);
 
   const handlerMinus = useCallback(() => {
-    if(numInCart.num > 1) {
-      changeNum(Number(numInCart.num) - 1);
+    if(productInCart.quantity > 1) {
+      changeQuantity(Number(productInCart.quantity) - 1);
     }
-  }, [numInCart, changeNum]);
+  }, [productInCart, changeQuantity]);
 
   const handlerPlus = useCallback(() => {
-    changeNum(Number(numInCart.num) + 1);
-  }, [numInCart, changeNum]);
+    changeQuantity(Number(productInCart.quantity) + 1);
+  }, [productInCart, changeQuantity]);
+
+  const handlerDelete = useCallback(() => {
+    fetchDeleteCartById(id);
+    resetProductInCart();
+    setCartIds(prev => prev.filter(productId => productId !== id));
+  }, [id, resetProductInCart, setCartIds]);
 
   return (
-    <div className="flex items-center gap-16">
+    <div className="flex items-center gap-16 480:gap-6">
       <div className="w-32 h-32 rounded-xl flex-shrink-0">
-        <img src={`${process.env.PUBLIC_URL}/${product.image}`} alt="임시 신발 사진"
+        <img src={image?.url} alt={`product${id}_image`}
           className="w-full h-full object-cover rounded-xl" />
       </div>
       <div className="flex flex-col justify-between h-full py-2 flex-grow">
         <div className="mb-4">
-          <p className="text-md font-semibold text-gray-600 line-clamp-1">{product.brand}</p>
-          <p className="text-2xl font-bold text-gray-800">{formatPrice(product.price)}</p>
+          <p className="text-md font-semibold text-gray-600 line-clamp-1">{productInCart.brand}</p>
+          <p className="text-2xl font-bold text-gray-800">{formatPrice(productInCart.price)}</p>
         </div>
         <div className="mt-2">
-          <ControlNum handlerMinus={handlerMinus} handlerPlus={handlerPlus} num={numInCart.num} />
+          <ControlQuantity handlerMinus={handlerMinus} handlerPlus={handlerPlus} quantity={productInCart.quantity} />
         </div>
+      </div>
+      <div>
+        <button onClick={handlerDelete}>
+          <IoTrashOutline className="text-2xl text-gray-600 hover:text-gray-400" />
+        </button>
       </div>
     </div>
   );
